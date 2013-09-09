@@ -15,6 +15,11 @@ import org.junit.Test;
 import by.kslisenko.wordcount.WordCountMapper;
 import by.kslisenko.wordcount.WordCountReducer;
 
+/**
+ * MRUnit allows testing hadoop map-reduce jobs in a Mockito-like style
+ * 
+ * @author kslisenko
+ */
 public class MRUnitTestExample {
 
 	private MapReduceDriver<Object, Text, Text, IntWritable, Text, IntWritable> mapReduceDriver;

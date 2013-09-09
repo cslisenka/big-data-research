@@ -12,6 +12,11 @@ import org.junit.Test;
 import by.kslisenko.wordcount.WordCountMapper;
 import by.kslisenko.wordcount.WordCountReducer;
 
+/**
+ * Approval tests visualize map-reduce task results in text-files. It's good to understand what's happens.
+ * 
+ * @author kslisenko
+ */
 public class ApprovalTestsExample {
 
 	@Test
