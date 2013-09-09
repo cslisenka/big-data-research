@@ -1,4 +1,4 @@
-package by.kslisenko.wordcount;
+package by.kslisenko.wordcount.mrunit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,9 @@ import org.apache.hadoop.mrunit.mapreduce.MapReduceDriver;
 import org.apache.hadoop.mrunit.mapreduce.ReduceDriver;
 import org.junit.Before;
 import org.junit.Test;
+
+import by.kslisenko.wordcount.WordCountMapper;
+import by.kslisenko.wordcount.WordCountReducer;
 
 public class MRUnitTestExample {
 

@@ -1,0 +1,11 @@
+[cat dog dat meat rabbit dog cat]
+
+ -> maps via MapperWrapper to -> 
+
+(cat, 1)
+(cat, 1)
+(dat, 1)
+(dog, 1)
+(dog, 1)
+(meat, 1)
+(rabbit, 1)

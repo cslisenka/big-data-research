@@ -1,0 +1,5 @@
+(cat, [1, 1, 1, 1])
+
+ -> reduces via ReducerWrapper to -> 
+
+(cat, 4)
