@@ -54,6 +54,8 @@ public class HadoopMain {
 		// Specify key/value
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);
+		job.setMapOutputKeyClass(Text.class);
+		job.setMapOutputValueClass(Text.class);
 		
 		// Input
 		job.setInputFormatClass(TextInputFormat.class);

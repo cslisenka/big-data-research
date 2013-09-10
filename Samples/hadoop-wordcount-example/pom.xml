@@ -57,5 +57,12 @@
 			<version>4.8.1</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- Dependencies for running on clouderra vm -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.5.0</version>
+		</dependency>		
 	</dependencies>
 </project>

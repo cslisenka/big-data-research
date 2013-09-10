@@ -1,7 +1,6 @@
 How to run on hortonworks sandbox VM
 0. Install lib/ApprovalTests.jar to local repository
-mvn install:install-file -Dfile=lib/ApprovalTests.jar -DgroupId=com.github.approv
-als -DartifactId=ApprovalTests -Dversion=0.13 -Dpackaging=jar
+mvn install:install-file -Dfile=lib/ApprovalTests.jar -DgroupId=com.github.approvals -DartifactId=ApprovalTests -Dversion=0.13 -Dpackaging=jar
 1. mvn clean install
 2. upload compiled jar and src/main/resources/worldcount_text1.txt to VM filesystem using filebrowser
 3. Open Job Designer->New Action->Java
