@@ -14,8 +14,8 @@ import org.approvaltests.hadoop.version1.SmartReducer;
 import org.junit.Before;
 import org.junit.Test;
 
-import by.kslisenko.wordcount.LogAnalyseMapper;
-import by.kslisenko.wordcount.LogAnalyseReducer;
+import by.kslisenko.wordcount.hostprotocolcount.LogAnalyseMapper;
+import by.kslisenko.wordcount.hostprotocolcount.LogAnalyseReducer;
 
 /**
  * Approval tests visualize map-reduce task results in text-files. It's good to understand what's happens.

@@ -13,6 +13,9 @@ import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
+import by.kslisenko.wordcount.hostprotocolcount.LogAnalyseMapper;
+import by.kslisenko.wordcount.hostprotocolcount.LogAnalyseReducer;
+
 public class HadoopMain {
 
 	public static void main(String[] args) 
@@ -25,8 +28,24 @@ public class HadoopMain {
 		
 		// Create job
 		Job job = new Job(conf, "LogAnalyses");
-		job.setJarByClass(LogAnalyseMapper.class);
+		job.setJarByClass(HadoopMain.class);
 		
+		configureHostProtocolCountMapReduceJob(job);
+		
+		FileSystem hdfs = FileSystem.get(conf);
+		if (hdfs.exists(out)) {
+			hdfs.delete(out, true);
+		}
+		
+		FileInputFormat.addInputPath(job, in);
+		FileOutputFormat.setOutputPath(job, out);
+		
+		// Execute job
+		int code = job.waitForCompletion(true) ? 0 : 1;
+		System.exit(code);
+	}
+	
+	public static void configureHostProtocolCountMapReduceJob(Job job) {
 		// Setup map reduce
 		job.setMapperClass(LogAnalyseMapper.class);
 		job.setReducerClass(LogAnalyseReducer.class);
@@ -37,20 +56,9 @@ public class HadoopMain {
 		job.setOutputValueClass(IntWritable.class);
 		
 		// Input
-		FileInputFormat.addInputPath(job, in);
 		job.setInputFormatClass(TextInputFormat.class);
 		
 		// Output
-		FileOutputFormat.setOutputPath(job, out);
 		job.setOutputFormatClass(TextOutputFormat.class);
-		
-		FileSystem hdfs = FileSystem.get(conf);
-		if (hdfs.exists(out)) {
-			hdfs.delete(out, true);
-		}
-		
-		// Execute job
-		int code = job.waitForCompletion(true) ? 0 : 1;
-		System.exit(code);
 	}
 }

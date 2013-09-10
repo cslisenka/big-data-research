@@ -1,4 +1,4 @@
-package by.kslisenko.wordcount;
+package by.kslisenko.wordcount.hostprotocolcount;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -9,8 +9,8 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 public class LogAnalyseMapper extends Mapper<Object, Text, Text, Text> {
 
-	private Text outKey = new Text();
-	private Text outValue = new Text();
+//	private Text outKey = new Text();
+//	private Text outValue = new Text();
 	
 	@Override
 	protected void map(Object key, Text value, Context context) throws IOException, InterruptedException {
@@ -22,17 +22,17 @@ public class LogAnalyseMapper extends Mapper<Object, Text, Text, Text> {
 		
 		Pattern p = Pattern.compile("[\\S]* [\\S]* [\\S]* [\\S]* ([\\S]*) [\\S]* [\\S]* ([\\S]*) [\\S]* [\\S]* [\\S]*");
 		
-		for (String logEntry : rows) {
-			Matcher m = p.matcher(logEntry);
-			if (m.find()) {
-				String protocol = m.group(1);
-				String ip = m.group(2);
+//		for (String logEntry : rows) {
+//			Matcher m = p.matcher(logEntry);
+//			if (m.find()) {
+//				String protocol = m.group(1);
+//				String ip = m.group(2);
 				
-				outKey.set(ip);
-				outValue.set(protocol);
-				context.write(outKey, outValue);
-			}
-		}
+//				outKey.set();
+//				outValue.set("http");
+				context.write(new Text("192.168.6.71"), new Text("http"));
+//			}
+//		}
 	}
 	
 }

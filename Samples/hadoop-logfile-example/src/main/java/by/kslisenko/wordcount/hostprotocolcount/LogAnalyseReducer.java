@@ -1,4 +1,4 @@
-package by.kslisenko.wordcount;
+package by.kslisenko.wordcount.hostprotocolcount;
 
 import java.io.IOException;
 import java.util.HashMap;
