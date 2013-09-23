@@ -28,7 +28,7 @@ public class LogAnalyseTest {
 	
 	@Before
 	public void setUp() throws IOException {
-		testLog = FileUtils.readFileToString(new File("src/main/resources/tcpdump.list"));
+		testLog = FileUtils.readFileToString(new File("src/main/resources/apachelogsample.txt"));
 	}
 	
 	@Test
