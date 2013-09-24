@@ -15,10 +15,9 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
 /**
- * Example shows process of interaction with remote neo4j server via REST API 
- * manually using Jersey REST services wrapper.
- * This way is not very good because we need to build json manually.
- * It's better to use Neo4jExternalServerRestBindingExample way.
+ * Example shows process of interaction with external neo4j server via REST API manually using Jersey.
+ * This way is not very good because we need to build JSON and make requests manually.
+ * It's better to use neo4j-rest-graphdb library (Neo4jExternalServerRestBindingExample.java).
  * 
  * @author kslisenko
  */

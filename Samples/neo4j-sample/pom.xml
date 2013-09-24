@@ -25,11 +25,22 @@
 			<artifactId>commons-io</artifactId>
 			<version>1.3.2</version>
 		</dependency>
-		
+
+		<!-- Used for making JSON requests to external Neo4j server manually. See 
+			Neo4jExternalServerExample.java -->
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-client</artifactId>
 			<version>1.17.1</version>
+		</dependency>
+
+		<!-- Wrapper library for external server interaction.
+		Acts in a GraphDatabaseService way like in Neo4jEmbeddedExamplesTest,
+		but interacts with external server. -->
+		<dependency>
+			<groupId>org.neo4j</groupId>
+			<artifactId>neo4j-rest-graphdb</artifactId>
+			<version>1.9.3-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
