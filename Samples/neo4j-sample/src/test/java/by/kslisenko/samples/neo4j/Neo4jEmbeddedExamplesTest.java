@@ -97,7 +97,7 @@ public class Neo4jEmbeddedExamplesTest {
 		// Afrer deleting node we can not find it by index
 		Assert.assertNull(nodeIndex.get("key", "value").getSingle());
 	}
-
+	
 	@After
 	public void tearDown() throws IOException {
 		graphDb.shutdown();
