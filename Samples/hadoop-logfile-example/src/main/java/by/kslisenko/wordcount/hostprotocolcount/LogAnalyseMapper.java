@@ -48,11 +48,11 @@ public class LogAnalyseMapper extends Mapper<Object, Text, Text, Text> {
         } else if (filename.charAt(0) != '/') {
             System.out.println("invalid filename " + filename);
         } else if (filename.lastIndexOf("/") == 0) {
-            context.write(new Text("dir"), new Text("/"));
-            if (filename.length() > 1) {context.write(new Text("dir"), new Text(filename));}
+            context.write(new Text("/"), new Text(filename));
         } else {
-            context.write(new Text("dir"), new Text(filename));
-            handleDirs(context, (substringBeforeLast(filename, "/")));
+            String dir = substringBeforeLast(filename, "/");
+            context.write(new Text(dir), new Text(filename));
+            handleDirs(context, dir);
         }
     }
 
@@ -76,7 +76,7 @@ public class LogAnalyseMapper extends Mapper<Object, Text, Text, Text> {
 				context.write(new Text(server), new Text(targetfile));
                 context.write(new Text("server"), new Text(server));
                 context.write(new Text("file"), new Text(targetfile));
-                handleDirs(context, (substringBeforeLast(targetfile, "/")));
+                handleDirs(context, targetfile);
 			}
 		}
 	}
