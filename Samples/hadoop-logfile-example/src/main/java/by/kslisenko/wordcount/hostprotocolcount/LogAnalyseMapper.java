@@ -36,7 +36,7 @@ public class LogAnalyseMapper extends Mapper<Object, Text, Text, Text> {
     {
         int pos = string.lastIndexOf( delimiter );
 
-        return pos >= 0 ? (pos + delimiter.length() < string.length() ?
+        return pos >= 0 ? ((pos + delimiter.length()) < string.length() ?
                                 string.substring( pos + delimiter.length() ) : "" ) : "";
     }
 

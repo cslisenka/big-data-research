@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>by.kslisenko</groupId>
 	<artifactId>hadoop-logfile-example</artifactId>
@@ -10,14 +10,22 @@
 		<jackson.version>2.1.4</jackson.version>
 	</properties>
 
-	<dependencies>
+    <repositories>
+    <repository>
+        <id>neo</id>
+        <name>neo</name>
+        <url>http://m2.neo4j.org/content/groups/everything</url>
+    </repository>
+    </repositories>
+
+    <dependencies>
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-core</artifactId>
 			<version>0.20.203.0</version>
 		</dependency>
 
-		<!-- Dependeicies for approvaltests -->
+		<!-- Dependencies for approvaltests -->
 		<dependency>
 			<groupId>com.github.approvals</groupId>
 			<artifactId>ApprovalTests</artifactId>
@@ -55,7 +63,6 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.8.1</version>
-			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -64,12 +71,36 @@
 			<version>1.3.2</version>
 		</dependency>
 
-		<!-- Dependencies for running on clouderra vm -->
+		<!-- Dependencies for running on Cloudera VM -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.5.0</version>
 		</dependency>
+
+        <!-- Neo4J dependencies -->
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j</artifactId>
+            <version>1.9.3</version>
+        </dependency>
+
+        <!-- Used for making JSON requests to external Neo4j server manually.
+             See Neo4jExternalServerExample.java -->
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>1.17.1</version>
+        </dependency>
+
+        <!-- Wrapper library for external server interaction.
+     Acts in a GraphDatabaseService way like in Neo4jEmbeddedExamplesTest,
+     but interacts with external server. -->
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-rest-graphdb</artifactId>
+            <version>2.0.0-SNAPSHOT</version>
+        </dependency>
 
 	</dependencies>
 </project>

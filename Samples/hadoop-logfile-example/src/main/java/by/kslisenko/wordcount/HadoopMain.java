@@ -1,7 +1,7 @@
 package by.kslisenko.wordcount;
 
-import java.io.IOException;
-
+import by.kslisenko.wordcount.hostprotocolcount.LogAnalyseMapper;
+import by.kslisenko.wordcount.hostprotocolcount.LogAnalyseReducer;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -13,8 +13,7 @@ import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
-import by.kslisenko.wordcount.hostprotocolcount.LogAnalyseMapper;
-import by.kslisenko.wordcount.hostprotocolcount.LogAnalyseReducer;
+import java.io.IOException;
 
 public class HadoopMain {
 
