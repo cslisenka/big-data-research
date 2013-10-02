@@ -8,26 +8,27 @@
 
 	<properties>
 		<jackson.version>2.1.4</jackson.version>
+		<hadoop.version>0.20.203.0</hadoop.version>
+		<neo4j.version>1.9.3</neo4j.version>
 	</properties>
 
 	<modules>
-		<module>resources-tree-hadoop</module>
+		<module>resources-tree-hadoop-nodes</module>
+		<module>resources-tree-hadoop-relationships</module>
 		<module>resources-tree-neo4j</module> <!--module>resources-tree-utils</module -->
 	</modules>
 
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
+				<groupId>by.kslisenko</groupId>
+				<artifactId>resources-tree-utils</artifactId>
+				<version>${project.version}</version>
+			</dependency>		
+			<dependency>
 				<groupId>org.apache.hadoop</groupId>
 				<artifactId>hadoop-core</artifactId>
-				<version>0.20.203.0</version>
-			</dependency>
-
-			<!-- Dependeicies for approvaltests -->
-			<dependency>
-				<groupId>com.github.approvals</groupId>
-				<artifactId>ApprovalTests</artifactId>
-				<version>0.13</version>
+				<version>${hadoop.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
@@ -81,7 +82,7 @@
 			<dependency>
 				<groupId>org.neo4j</groupId>
 				<artifactId>neo4j</artifactId>
-				<version>1.9.3</version>
+				<version>${neo4j.version}</version>
 			</dependency>
 
 			<dependency>
