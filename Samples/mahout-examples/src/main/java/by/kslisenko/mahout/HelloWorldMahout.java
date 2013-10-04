@@ -25,7 +25,6 @@ import org.apache.mahout.math.VectorWritable;
  * Example of simple k-means clustering
  * 
  * @author kslisenko
- * 
  */
 public class HelloWorldMahout {
 	
