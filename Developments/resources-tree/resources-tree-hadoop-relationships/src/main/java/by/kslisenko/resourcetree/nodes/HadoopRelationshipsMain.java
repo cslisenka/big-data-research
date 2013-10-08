@@ -29,10 +29,11 @@ public class HadoopRelationshipsMain {
 		
 		configureMapReduceJob(job);
 		
-		FileSystem hdfs = FileSystem.get(conf);
-		if (hdfs.exists(out)) {
-			hdfs.delete(out, true);
-		}
+		// Dowsn't work on amazon
+//		FileSystem hdfs = FileSystem.get(conf);
+//		if (hdfs.exists(out)) {
+//			hdfs.delete(out, true);
+//		}
 		
 		FileInputFormat.addInputPath(job, in);
 		FileOutputFormat.setOutputPath(job, out);

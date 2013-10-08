@@ -3,7 +3,6 @@ package by.kslisenko.resourcetree.nodes;
 import java.io.IOException;
 
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -12,7 +11,6 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
-
 
 public class HadoopNodesMain {
 
@@ -29,10 +27,11 @@ public class HadoopNodesMain {
 		
 		configureMapReduceJob(job);
 		
-		FileSystem hdfs = FileSystem.get(conf);
-		if (hdfs.exists(out)) {
-			hdfs.delete(out, true);
-		}
+		// Dowsn't work on amazon
+//		FileSystem hdfs = FileSystem.get(conf);
+//		if (hdfs.exists(out)) {
+//			hdfs.delete(out, true);
+//		}
 		
 		FileInputFormat.addInputPath(job, in);
 		FileOutputFormat.setOutputPath(job, out);
