@@ -12,3 +12,6 @@ args=/path/to/source/wordcount_text1.txt /path/to/output
 5. Click Submit
 
 TODO This things can be done via ant/shell script
+
+How to build jar file with libraries (if amazon throws some ClassNotFoundExceptions):
+mvn assembly:assembly -Dmaven.test.skip=true
