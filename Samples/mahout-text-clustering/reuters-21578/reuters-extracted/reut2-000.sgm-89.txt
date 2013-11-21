@@ -1,0 +1,6 @@
+26-FEB-1987 16:29:30.05
+
+TEXAS INSTRUMENTS <TXN> DEVELOPS NEW CHIP
+
+Texas Instruments Inc said it has developed the first 32-bit computer chip designed specifically for artificial intelligence applications.     The company said the new microprocessor, measuring one-centimeter square and containing 553,687 transistors, is the densest chip ever made.     The chip was designed, Texas Instruments said, for use with the Lisp langugage, which is used widely by software programmers in the artificial intelligence field.     The company added that it is working on a production version of the chip.  Reuter &#3;
+

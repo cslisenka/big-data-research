@@ -1,0 +1,6 @@
+ 4-MAR-1987 12:09:18.24
+
+IBM <IBM> DEMONSTRATES NEW CHIP
+
+International Business Machines Corp said it demonstrated an experimental computer chip called an opto-electronic receiver that transforms light into electrical signals that translate into computer language.     IBM said the chip is two times faster than any similar chip reported and can read 40 encyclopedia volumes a second.     The chip is made of gallium arsenide which moves electrical signals faster than the silicon used in most computer circuits.     IBM also said that since gallium arsenide is more efficient in turning light signals into electrical signals, it seems to be an ideal material for the light-based computer communications expected to be widely used in the future.     The chip's speed is also enhanced through the elimination of wiring by placing the functionally dissimilar photodetector and transistor circuitry close together.     Bringing these elements closer together also isolates the receiver from other electronic circuits and reduces noise and distortion, it said.  Reuter &#3;
+

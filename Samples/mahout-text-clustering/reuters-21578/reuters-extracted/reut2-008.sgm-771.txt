@@ -1,0 +1,6 @@
+24-MAR-1987 10:45:03.64
+
+WANG <WAN> IN SOFTWARE INTEGRATION AGREEMENT
+
+Wang Laboratories Inc said it entered into a development and marketing agreement with Sterling Software's <SSW> Answer Systems Inc, aimed at integrating its data base product with Answer's mainframe database access tool.     Wang said the purpose of the projects is to offer Wang VS users direct access to information in DB2, IMS, and WSAM files residing on IBM (R) and IBM-compatible mainframes.     Wang said it will integrate its PACE product with Answer's System's Answer/DB (R).  Reuter &#3;
+

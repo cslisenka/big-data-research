@@ -1,0 +1,6 @@
+29-JUN-1987 12:49:44.79
+
+BAXTER <BAX> AND GE <GE> DEVELOP VENDOR SYSTEM
+
+Baxter Travenol Laboratories Inc, General Electric Co unit GE Information Services and <Premier Hospital Alliance> said they developed a computer purchasing system for the health care industry.     They said the system, known as ASAP Express, removes the need to have a different computer system for each vendor and will streamline hospital purchasing systems by reducing paperwork and simplifying billing.     The system combines Baxter's ASAP (Analytic Systems Automated Purchasing) clearinghouse system and the GE EDI (electronic data interchange) Express system.     GE Information Services operates a large commercially available teleprocessing network. Illinois based Premier Hospital Alliance is a voluntary group of 37 hospitals in 30 U.S. cities.     Baxter Travenol said that by the end of 1987 it expects more than 100 hospitals to be part of the ASAP Express system, with a majority of the 5,600 current ASAP users participating in the ASAP Express system in the next five years.  Reuter &#3;
+

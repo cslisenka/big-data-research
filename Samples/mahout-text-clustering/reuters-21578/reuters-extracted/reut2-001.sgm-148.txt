@@ -1,0 +1,6 @@
+ 3-MAR-1987 12:07:47.71
+
+CRAY <CYR> INSTALLS COMPUTER FOR GRUMMAN <GQ>
+
+Cray Research Inc said it installed a Cray X-MP/14 supercomputer valued at eight mln dlrs at Grumman Corp's Grumman Aerospace Corp.     Cray said the system, which includes a 550 solid state storage device, was installed in the first quarter at Grumman's scientific computer facility in Bethpage, N.Y.     The system replaces a Cray-1M/2300 computer system installed in 1983. It will be used for engineering and scientific applications in the design of aircraft systems.  Reuter &#3;
+

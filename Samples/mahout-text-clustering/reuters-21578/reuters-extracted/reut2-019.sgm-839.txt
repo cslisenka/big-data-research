@@ -1,0 +1,6 @@
+29-JUN-1987 14:55:48.65
+
+SYMBOLICS INC <SMBX> WINS SPACE CONTRACT
+
+Symbolics Inc said it won a 500,000 dlr contract from NASA Ames Research Center for the preliminary design of a spaceborne symbolic processor.     The company said its symbolic processing technology is used to faciliate artificial intelligence applications and other advanced computing techniques.     It said its processor will be used to execute both symbolic and numeric applications on future space shuttle, space stations and deep space missions.  Reuter &#3;
+

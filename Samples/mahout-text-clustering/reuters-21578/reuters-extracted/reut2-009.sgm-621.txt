@@ -1,0 +1,6 @@
+25-MAR-1987 17:16:49.59
+
+UAL <UAL> UNIT LINKS RESERVATION SERVICE
+
+UAL Inc, which on May 1 becomes Allegis Corp, said it established a direct communications link between its Apollo Services reservations system and Budget Rent a Car, Hilton Hotels and Hilton International Hotels.     Under the new system, all Budget, Hilton and Hilton International hotel reservations made through Apollo, which is owned by UAL's Covia Corp, will pass the ARINC system and speed up time it takes to complete a traveler's reservation, the company said.  Reuter &#3;
+

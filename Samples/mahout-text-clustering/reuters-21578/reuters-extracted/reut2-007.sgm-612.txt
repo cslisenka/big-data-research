@@ -1,0 +1,6 @@
+20-MAR-1987 08:20:33.81
+
+LCE AND IPE TO INTRODUCE TIME-STAMPING
+
+The London Commodity Exchange (LCE) and International Petroleum Exchange (IPE) are to introduce revised trading slip systems incorporating the time that futures business is executed, an LCE spokeswoman said.     The LCE's six week trial system starts on April 1, with buyers and sellers filling in slips which carry not only the transaction, but also the date and time of execution.     These slips will then have to be forwarded to market staff for entering into International Commodities Clearing House (ICCH) terminals within 15 minutes of the trade being transacted, the spokeswoman said.     The IPE system is similar, although here traders will use time-stamping machines which automatically enter the date, as is the practice on futures exchanges in the U.S. And on the London International Financial Futures Exchange.     Time-stamping of U.K. Futures business becomes mandatory later this year under the Financial Services Act, to meet the Securities and Investments Board's requirement on audit-trails, the LCE spokewoman said.  REUTER &#3;
+

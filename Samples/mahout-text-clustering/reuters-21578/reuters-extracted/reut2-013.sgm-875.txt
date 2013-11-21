@@ -1,0 +1,6 @@
+ 7-APR-1987 10:19:58.84
+
+PYRAMID TECHNOLOGY <PYRD>, ORACLE <ORCL> IN DEAL
+
+Pyramid Technology Corp said it has reached an agreement to sell Oracle Corp's Oracle database and <Relational Technology Inc's> Ingres database through the Pyramid direct sales force and to original equipment manufactures and value-added resellers.     The company said it will also develop separate joint engineering projects with Oracle and Relational to tailor the two databases to use Pyramid's functional parallel system architecture to imporove database performance.     It said it has also reached an agreement for <Information Builders'> Focus language and database management system to become available on Pyramid Technology superminicomputer systems.  Reuter &#3;
+

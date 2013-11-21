@@ -1,0 +1,6 @@
+29-JUN-1987 13:26:35.63
+
+SUNRIVER INTRODUCES NEW WORKSTATIONS
+
+<SunRiver Corp>, a Jackson, Miss.-based computer products company, said it introduced the first line of computer workstations designed to be connected with powerful personal computers over fiber-optic cable.     The privately held company said up to 16 of its new Cygna 386 workstations can attach to a PC based on Intel Corp's <INTC.O> 80386 microprocessor, which include models sold by Compaq Computer Corp <CPQ> and International Business Machines Corp <IBM>.     SunRiver said the Cygna workstations allow users to access files and share printers and other equipment controlled by an 80386-based PC.     In addition, the workstations are the first of their kind to offer full graphics capabilities in a multiuser-multitasking environment, Sunriver said.     The company said the Cygna line will be available in October at prices starting at 1,599 dlrs.  Reuter &#3;
+

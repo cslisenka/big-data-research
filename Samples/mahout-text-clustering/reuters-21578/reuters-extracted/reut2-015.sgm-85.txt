@@ -1,0 +1,6 @@
+ 8-APR-1987 11:36:49.46
+
+DATA I/O <DAIO> HAS SOFTWARE FOR MOSAIC SYSTEMS
+
+Data I/O Corp said it unveiled a software package that helps engineers design complex integrated circuits that fit on circuit boards built by <Mosaic Systems Inc>.     It said the Mosaic boards allow engineers to develop the circuits at one-tenth their present size. The software will be marketed in conjuction with the circuit boards, the company said.  Reuter &#3;
+

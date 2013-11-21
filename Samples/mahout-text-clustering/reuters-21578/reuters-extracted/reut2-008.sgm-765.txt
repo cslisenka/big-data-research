@@ -1,0 +1,6 @@
+24-MAR-1987 10:40:36.72
+
+DIGITAL EQUIPMENT <DEC> ANNOUNCES PRODUCTS
+
+Digital Equipment Corp announced 18 computer-aided manufacturing products which it said reinforces its integrated manufacturing offerings.      Digital predsident Kenneth Olsen told reporters that the company now offers a full range of systems, applications and services for its manufacturing customers based on its popular VAX computer operating system.     Among the products announced today are eight industrial computer systems based on Digital's Microvax II and PDP 11 computers.      The company also introduced products that linked its various measurement and control devices to its computer systems and a commitment to support the manufacturing automated protocol standard endorsed by General Motors Corporation.     GM is attempting to get all computer manufacturing vendors to support the MAP standard so that equipment for different manufacturers will work together on the factory floor.      The new products will be available immediately with some beginning first delivery in July.  Reuter &#3;
+

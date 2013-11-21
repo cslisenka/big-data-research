@@ -1,0 +1,6 @@
+19-OCT-1987 10:24:18.32
+
+ALLIANT COMPUTER INTRODUCES MINISUPERCOMUPTER
+
+Alliant Computer Systems Corp <ALNT.O> said it introduced a parallel vector minisupercomputer priced at less than 100,000 dlrs.     The company said the new FX/4 makes multi-user supercomputing affordable for the first time to workgroups in industrial and commercial markets.     The company said it also introduced high-performance compiler and algorithm products for the FX/Series systems.         Alliant said it achieved the low price for the FX/4 through a combination of new packaging technology and cost decreases due to semiconductor price improvements and manufacturing efficiencies.     The company also released the FX/C compiler, which it said can double the performance of C programs.     The company said its newly released algorithm products, the FX/Linpack and FX/Eispack libraries, are collections of mathematical subroutines that programmers can call from all Alliant languages.  Reuter &#3;
+

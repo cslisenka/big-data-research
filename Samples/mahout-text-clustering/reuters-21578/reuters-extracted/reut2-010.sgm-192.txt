@@ -1,0 +1,6 @@
+26-MAR-1987 16:51:44.54
+
+IBM <IBM> CLOSER TO LASER CHIP TESTING
+
+International Business Machines Corp said scientists at its Zurich research laboratory have taken a key step toward developing a method of testing computer chips with a laser.     The technique is important, IBM said, because it could lead to the development of tools that can determine the quality of microscopic-sized computer chips without damaging them.     IBM said chip makers will need such advanced testing methods to aid them in developing the next generation of semiconductors.     These chips will be smaller than today's chips but will be able to store vastly greater amounts of information.     IBM said its technique uses a laser light for "contactless" measuring of electrical signals on metal lines similar to the kind found in computer chip circuitry.     It said that using commercially available lasers, the method should permit measurements of circuits with a width of one micrometer or less.     A micrometer is about 80 times smaller than the thickness of a sheet of paper.  Reuter &#3;
+

@@ -1,0 +1,6 @@
+30-MAR-1987 13:47:00.03
+
+GENRAD <GEN> OFFERS SOFTWARE FOR TESTING
+
+GenRad Inc said it introduced a software product that allows for development of test programs for its 227X line of in-circuit/functional test systems on Digital Equipment Corp's <DEC> VAX-based computers.     GenRad said the product, named ATG-32, provides for off-line development of test systems at four- to eight-times the speed of its current 227X test program.     It said ATG-32 is priced at 30,000 dlrs and is available immediately.  Reuter &#3;
+

@@ -1,0 +1,6 @@
+29-JUN-1987 12:05:59.08
+
+APOLLO <APCI.O> OFFERS NEW WORKSTATIONS
+
+Apollo Computer Inc said it introduced a new family of computer workstations and improved the performance and cut prices on some of its existing workstations.     In addition, the company announced new products that allow personal computers to communicate with workstations.         Apollo said its new workstation family, the Domain Series 4000 Personal Super Workstations, includes the first color workstation priced under 19,000 dlrs that can process four million instructions per second.     Apollo said the Domain Series 4000 also features a 14,000 dlr monochrome workstation and a 13,000 dlr workstation server, both of which can process four million instructions per second.     Apollo said the new Domain Series 4000 models double the performance of its existing Domain Series 3000 workstations and provide performace equivalent to competing workstations at half the price.     "We are clearly telling users that Apollo is committed to maintaining its price/performance leadership in the workstation marketplace," said Thomas A. Vanderslice, Apollo's chief executive officer.     Apollo also said it will offer new color and monochrome models for the Domain Series 3000, its entry-level workstation family. It said it also cut some prices but did not specify.  Reuter &#3;
+

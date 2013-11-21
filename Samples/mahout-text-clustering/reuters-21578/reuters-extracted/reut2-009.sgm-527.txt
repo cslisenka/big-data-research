@@ -1,0 +1,6 @@
+25-MAR-1987 14:58:07.52
+
+COMPUTERVISION <CVN> UNVEILS NEW DESIGN GEAR
+
+Computervision Corp said it introduced additions to its CADDS 4X software line, a new CADDStation workstation and upgrade kits for existing CADDStation workstations.     The company said the new software products include Autoboard SMT, priced at 35,000 dlrs, which is a microchip version of its printed circuit board software.     The new CADDStation, based on Sun Microsystems Inc's <SUNW> workstation technology, is a 32-bit system, available initially as a server, with a processing capacity of four mips, or million instructions per second.     The new CADDStation, Computervision said, is priced at 90,400 dlrs.     The company said it is also offering kits to upgrade its 2-mips CADDstation priced at 35,000 dlrs.  Reuter &#3;
+

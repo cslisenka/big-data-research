@@ -1,0 +1,6 @@
+ 7-APR-1987 08:23:17.25
+
+NYMEX GASOLINE  VOL/OPEN INTEREST FOR APRIL 6
+
+VOL    OPEN   CHANGE   MAY  2515  15541   off  885  JNE  2742  15315   off  139  JLY   936   5362   off   39  AUG   213   1421   up   104  SEP    21    945   off    7  OCT    25    582   up    13  NOV     3    369   up     3  DEC     2    607   up     2  JAN     0    248   unch     TTL   6457  40390   off  948  &#3;
+

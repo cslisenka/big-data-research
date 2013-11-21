@@ -1,0 +1,6 @@
+23-MAR-1987 10:55:55.02
+
+PRIME COMPUTER <PRM> INTRODUCES WORKSTATION
+
+Prime Computer Inc said it introduced an interactive three dimensional graphics workstation.     Prime said it is its first offering in a new engineering/scientific product line and employs Prime's implementation of ATT's <T> UNIX System V.3 operating system, a program that controls the computer.     Prime said the new product delivers up to twice the performance of the IRIS 3120 series, considered the industry's leading 3-D graphics workstation, and is driven by five times the performances of a VAX 11/780 system.     Shipment is scheduled for June, 1987, and the product's standard configuration is priced at 74,900 dls with a monthly maintenance fee of 492 dlrs, Prime said.  Reuter &#3;
+

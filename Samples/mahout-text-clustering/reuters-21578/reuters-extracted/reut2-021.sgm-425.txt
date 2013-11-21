@@ -1,0 +1,6 @@
+19-OCT-1987 09:57:33.00
+
+KANSAS CITY EXCHANGE'S AUDIT TRAIL ADEQUATE
+
+The Commodity Futures Trading Commission (CFTC) said the Kansas City Board of Trade's (KCBT) one-minute audit trail system was adequate and accurate.     But in its second rule enforcement review of an exchange's audit trail system, CFTC said KCBT needed to provide a more accurate indication of the percent of trades that meet the one-minute timing standard.     CFTC also recommended the exchange develop a computerized program to compare time and sales prints to the record of trades in its trade register.  Reuter &#3;
+

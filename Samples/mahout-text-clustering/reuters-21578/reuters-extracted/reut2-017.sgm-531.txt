@@ -1,0 +1,6 @@
+ 1-JUN-1987 10:05:55.63
+
+CULLINET <CUL> RELEASES NEW ANALYSIS SYSTEM
+
+Cullinet Software Inc said it has introduced Release 10.1 of Performance Monitor, an on-line system that enables system programmers to analyze performance information quicky.     Cullinet said the Release 10.1 provides program analysis functions for users of Cullinet's IDMS/R database software.     The company said it also has enhanced the new system with a "windowing" function that allows people to view several resources concurrently.     It added the new system is priced at 27,000 dlrs and will be generally available later this month.  Reuter &#3;
+

@@ -1,0 +1,6 @@
+31-MAR-1987 10:10:54.70
+
+GE <GE> CIRCUITS CERTIFIED BY MILITARY
+
+General Electric Co said the U.S. Defense Electronics Supply Center has awarded its Research Triangle Park, N.C., facility a generic certification for the production of two-micro gate arrays for military use.     The company said after it qualifies three generic test circuits using the newly-certified two-micro process -- a standard evaluation chip, micro test chip and JEDEC benchmark chip -- the facility will require greatly simplified testing to comply with military standards.  That qualification is expected by the fourth quarter, the company said.  Reuter &#3;
+

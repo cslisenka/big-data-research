@@ -1,0 +1,6 @@
+29-JUN-1987 12:42:43.19
+
+INTEL <INCT.O> SETS PACT WITH SILICON COMPILER
+
+Intel Corp said it has signed a letter of intent with privately-held Silicon Compiler Systems Corp under which Intel will become a value-added silicon vendor for integrated circuits designed with Silicon Compiler's GENESIL silicon compilation system.     Under the proposed pact, Intel would provide initial silicon foundry services for GENESIL-based designs.     GENESIL users would be able to compile their application-specific designs using Intel's 1.5-micron complementary metal-oxide semiconductor process.      Reuter &#3;
+

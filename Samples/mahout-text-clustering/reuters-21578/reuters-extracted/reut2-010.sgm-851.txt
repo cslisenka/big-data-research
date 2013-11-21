@@ -1,0 +1,6 @@
+30-MAR-1987 11:39:07.07
+
+SPECTRUM CONCEPTS UNVEILS NETWORKING PRODUCT
+
+<Spectrum Concepts Inc> said it unveiled a new software product called XCOM 6.2 that links various computer systems together.     The company said the software can transfer data between International Business Machine Corp's <IBM> mainframe computers, System/38 minicomputers, Digital Equipment Corp <DEC> Vax minicomputers, IBM personal computers and Token Ring local area networks.     It said prices range from 26,000 dlrs for a mainframe license to 200 dlrs for each personal computer.  Reuter &#3;
+

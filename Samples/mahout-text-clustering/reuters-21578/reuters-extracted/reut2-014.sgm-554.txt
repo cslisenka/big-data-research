@@ -1,0 +1,6 @@
+ 7-APR-1987 15:57:29.05
+
+MINNEAPOLIS DAILY CASH GRAIN CLOSE (RAIL) USDA
+
+(CENTS PER BUSHEL)  Minneapolis/Duluth Cash Close and Change  M=Minneapolis, D=Duluth, NB=no bid  1 DNS WHEAT: PROTEIN   ord port   M-D 268-1/4n   up 1-3/4    11 pct     M-D 273-1/4n   up 1-3/4    12 pct     M-D 288-1/4    up 6-3/4    13 PCT     M-D 296-1/4    up 1-3/4    14 pct     M-D 323-1/4    up 1-3/4    15 pct     M-D 375-1/4    up 1-3/4    16 pct     M-D 415-1/4    up 1-3/4    17 pct     M-D 420-1/4n   up 1-3/4   1 HRW WHEAT   12 pct     D-M-288-1/4   dn 1/4       13 pct     D-M-300-1/4   up 1-3/4     1 Hard Amber Durum    Milling  M-D 395-400    unch          Terminal   M-355n       unch                     D-380n       unch        1 Pl Rye     M-185        unch        2 Rye        M-165n-175n  unch        1 Hvy Oats   M-155n-166n  unch        2 Hvy Oats   M-155n-166   unch        Malting Barley - 65 pct or better    Mellow     M-200-205    unch          Blue       M-205        unch          2 Feed     M-unq                                D-175b       unch        Minneapolis Only  2 Yel Corn     140-1/2b   up 2-1/2   1 Yel Soybeans 492-1/2b   up 2-3/4   Sun Seeds - oil type               M-no quote                           D-no quote              Reuter &#3;
+

@@ -1,0 +1,6 @@
+16-MAR-1987 15:42:13.94
+
+ADVANCED MICRO <AMD> PLANS NEW MICROPROCESSOR
+
+Advanced Micro Devices said it plans to build the first of a new generation of 32-bit CMOS microprocessors designed to operate three to five times faster than the 32-bit devices currently built.     The new microprocessor is capable of sustained performance of 17 mln instructions per second and has a peak of 25 mln instructions per second, the company said.     It said the new device is suitable for engineering workstations, super-minicomputers, laser printer controllers and other high-performance applications.  Reuter &#3;
+

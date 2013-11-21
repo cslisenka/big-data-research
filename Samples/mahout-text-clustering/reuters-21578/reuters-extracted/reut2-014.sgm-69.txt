@@ -1,0 +1,6 @@
+ 7-APR-1987 11:20:16.05
+
+HONEYWELL BULL UNVEILS FIVE NEW COMPUTERS
+
+Honeywell Bull, a 1.9 billion dlr computer systems company formed March 27 by Honeywell Inc <HON>, Compagnie des Machines Bull of France and NEC Corp of Japan, said it introduced a line of high-performance computers for medium and large companies.     The company also unveiled software for the new systems to facilitate patient care in hospitals and control inventory and production in factories.     Honeywell Bull said its new line includes five models in the DPS 7000 family of 32-bit virtual memory systems that support as many as 600 terminals and perform between 9,000 and 52,000 transactions an hour.     Prices for the systems will range from 127,000 dlrs to more than 1.0 mln dlrs.     It said two integrated, modular software packages introduced are specifically for operation on DPS 7000 computers.  Reuter &#3;
+

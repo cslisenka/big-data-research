@@ -1,0 +1,6 @@
+18-MAR-1987 10:51:59.19
+
+IBM <IBM> DETAILS STANDARDS ON LINKING PRODUCTS
+
+International Business Machines Corp has released software programing standards that will eventually make it possible to link the company's computers of all sizes, a spokeswoman said.     She said standards were contained in a programing announcement IBM sent to its sales representatives and some customers. The new standards, known as Systems Application Architecture, do not constitute a new product. But they provide the framework for development of saftware to be used in future computers.  Reuter &#3;
+

@@ -1,0 +1,6 @@
+19-JUN-1987 04:37:40.72
+
+FUJITSU DEVELOPS FAST SIMULATION PROCESSOR
+
+Fujitsu Ltd <ITSU.T> has developed a simulation processor which will operate faster than any computer and will speed development of the next generation of computers, a spokesman told Reuters.     The simulation processor will halve the time needed for fault testing the millions of basic logic circuits incorporated in the latest computers, he said.     It can simulate the operation of as many as 530 mln logic elements a second if a maximum of 64 processors are interconnected. The simulation processor, which took four years to develop, will not be marketed, he said.  REUTER &#3;
+

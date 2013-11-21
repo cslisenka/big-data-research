@@ -1,0 +1,6 @@
+19-OCT-1987 14:13:23.77
+
+DIGITAL COMMUNICATIONS <DCAI.O> UNVEILS PRODUCTS
+
+Digital Communications Associates Inc said it unveiled two new products that allow personal computers not directly attached to a mainframe computer to communicate with the host computer.     The IRMAremote for Hayes AutoSync, which will cost 395 dlrs, is a software product that allows International Business Machines Corp <IBM> personal computers to communicate with host computers via dial-up telephone lines.     The IRMAremote X.25, costing 1,795 dlrs, uses hardware and software and allows personal computers to communicate with host computers via X.25 packet switching network.  Reuter &#3;
+

@@ -1,0 +1,6 @@
+12-MAR-1987 13:47:32.06
+
+BRITISH TELECOM <BTY> UNIT TO OFFER SOFTWARE
+
+British Telecommunications PLC's Dialcom unit said it will begin next month to sell a software package that allows computers made by different manufacturers to send and receive electronic-mail messages.     The software, which is based on the X.400 international standard recommendation, will be marketed internationally, Dialcom said.     In addition, the company said Data General Corp <DGN> agreed to conduct engineering tests of the software in the United States. Data General is a strong proponent of the X.400 standard.  Reuter &#3;
+

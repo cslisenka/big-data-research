@@ -1,0 +1,6 @@
+ 7-APR-1987 10:47:31.22
+
+WINNIPEG GRAIN OPG TRENDS 7-APR
+
+846  JUL7   877A          877  OCT7    --           926  DEC7    --           953 OATS      OPEN       P SETT  MAY7   752A          755  JUL7   720A          722  OCT7    --           702  DEC7    --           700 BARLEY    OPEN       P SETT  MAY7   777A          779  JUL7   787B          790  OCT7   737A          738  DEC7   732H  732L    733  MAR8    --           739 FLAX      OPEN       P SETT  MAY7  1920H 1920L   1907  JUL7  1975B         1960  OCT7  2050B         2040  DEC7  2089H 2089L   2080  MAR8  2130B         2125 WHEAT     OPEN       P SETT  MAY7   856A          857  JUL7   856A          857  OCT7   832H  832L    832  DEC7   829B          829 VANCOUVER RAPESEED           OPEN       P SETT  JUN7  2213L 2218H   2213  SEP7  2288L 2290H   2286  NOV7  2332H 2332L   2324  JAN8  2380T 2381B   2373  MAR8  2415B         2410 &#3;
+

@@ -1,0 +1,6 @@
+ 2-MAR-1987 14:08:10.32
+
+APPLE <AAPL>, AST <ASTA> OFFER MS-DOS PRODUCTS
+
+Apple Computer Inc and AST Research Inc said they are offering two products that allow MS-DOS software compatibility with Apple's new Macintosh SE and Macintosh II.     "Apple understands the importance of information sharing in multiple vendor environments," said Apple Chairman John Sculley, at a seminar where the new products were released.     The products allow the new Macintosh computers to run MS-DOS applications in a window at the speed of an IBM PC-XT and IBM PC-AT.     The products will require an external MS-DOS drive, which Apple also announced today.     Apple also introduced a host of other products, including storage devices, memory upgrade kits, keyboards and two display monitors.     In addition, it announced jointly with Dow Jones and Co <DJ> and MCI Communications Corp <MCIC> new electronic mail software, called Desktop Express, that lets users send graphic documents over telephone wires.  Reuter &#3;
+

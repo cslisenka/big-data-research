@@ -1,0 +1,6 @@
+ 2-MAR-1987 10:48:41.45
+
+PRIME COMPUTER <PRM> UNVEILS PC SOFTWARE
+
+Prime Computer Inc said it has introduced the Prime Medusa/pc software, a two dimensional version of its Prime Medusa computer-aided-design software.     Prime said Prime Medusa/pc is for use on an International Business Machines Corp <IBM> PC/AT operating within a Prime 50 Series minicomputer environment.     The company said the software is available immediately to customers who have or are currently ordering a Prime Medusa license on one of Prime's 50 series systems.     Prime added the software costs 5,000 dlrs per license with monthly maintenance of 65 dlrs.     Prime said it also unveiled the Prime Medusa Revision 4.0 system with a new feature for developing applications that alows users to associate non-graphic information with graphic elements on a drawing sheet.     The Prime Medusa Revision 4.0 is available immediately, Prime said.  Reuter &#3;
+

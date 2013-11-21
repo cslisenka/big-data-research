@@ -1,0 +1,6 @@
+30-MAR-1987 15:56:28.52
+
+APPLE <AAPL> EXPANDS NETWORK CAPABILITIES
+
+Apple Computer Inc said it has extended the ability of the Apple MacIntosh personal computer family to commmunicate over <Northern Telecom Ltd's> Meridian SL-1 integrated services network.     The new capabilities include linking separate AppleTalk networks, dial-up remote use of LaserWriter printers, one step file transfer and conversion and Memorybank 485, a new 485 megabyte storage subsystem for use with MacIntosh personal computers, Apple said.  Reuter &#3;
+

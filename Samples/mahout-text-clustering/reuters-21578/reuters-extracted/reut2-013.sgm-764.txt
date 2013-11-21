@@ -1,0 +1,6 @@
+ 7-APR-1987 09:44:33.15
+
+3COM <COMS> SUPPORTS NEW <IBM> COMPUTERS
+
+3Com Corp said it supports International Business Machines Corp's personal System/2 series of computers, and will provide network operating software and interfaces.     The software and interfaces will allow the new machines to be integrated into existing 3System workgroup systems, 3Com said.     3Com said it is modifying its 3+ network software to work under DOS 3.3, ensuring campatibility with current Personal Snd IBM's new Token Ring adaps Micro Channel architecture.  Reuter &#3;
+

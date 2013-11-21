@@ -1,0 +1,6 @@
+29-JUN-1987 13:04:11.71
+
+GENRAD <GEN> INTRODUCES TEST SYSTEM
+
+GenRad Inc said it has introduced the HITEST test generation system.     The company said HITEST takes a modular approach to test generation, using a set of interactive software tools that automate many parts of the test generation process.     HITEST runs on Digital Equipment Corp <DEC> VAX and MicroVax computers and is priced at 64,000 dlrs for a software license, GenRad said.     It added that delivery is immediate.  Reuter &#3;
+

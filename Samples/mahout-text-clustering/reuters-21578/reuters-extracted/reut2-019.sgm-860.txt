@@ -1,0 +1,6 @@
+29-JUN-1987 15:32:48.74
+
+APOLLO <APCI.O> LICENSES PHOENIX SOFTWARE
+
+<Phoenix Technologies Ltd> said it has signed a marketing agreement with Apollo Computer Inc.     Phoenix said that the agreement allows Apollo to market Phoenix's software under the name "Domain/PC Emulator."     The company said that the software will be available on Apollo's new Domain Series 4000 personal workstations and Apollo's current generation of machines by the end of this year's third quarter.     Phoenix said the software allows system manufacturers to offer their customers an MS-DOS based 100 pct PC-compatible operating mode, done solely through software emulation.     Apollo will license the software from Phoenix and sell it directly to its customers.  Reuter &#3;
+

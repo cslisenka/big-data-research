@@ -1,0 +1,6 @@
+20-MAR-1987 16:32:34.71
+
+MULTI SOLUTIONS <MULT> UNIT ADDS CAPABILITY
+
+Multi Solutions Inc's Multi Soft Inc <MSOF> announced Version 3.0 of Super-Link, its application development system for building cooperative peer-to-peer applications under CICS, TSO, VM/CMS and IDMS-DC.     The release adds two new components to the Super-Link system and provides enhanced features and support for application connectivity on Digital's VAX computer line running VMS, the company said.  Reuter &#3;
+

@@ -1,0 +1,6 @@
+ 2-MAR-1987 16:34:54.11
+
+COMPUTER LANGUAGE <CLRI>UNIT OFFERS TAX PRODUCT
+
+Computer Language Research Inc said its CLR/Micro-Tax unit introduced a Micro-Tax W-4 Generator, a new software package for accounts and corporate personnel departments.     The company said the package takes the user through each question on the new W-4, gives explanatory instructions, automatically calculates entries, checks tables and generates the completed W-4.  Reuter &#3;
+

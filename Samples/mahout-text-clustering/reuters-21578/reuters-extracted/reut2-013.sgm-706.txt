@@ -1,0 +1,6 @@
+ 7-APR-1987 09:19:13.29
+
+WANG <WAN B> ADDS ENTRY-LEVEL TEMPEST UNITS
+
+Wang Laboratories Inc said it has added two entry-level 32-bit minicomputers to its TEMPEST systems product line.     It said the low-cost VS 5T and VS 6T, priced at 13,500 dlrs and 21,500 dlrs, respectively, maintain software and peripheral compatibility with all VS systems. The new systems can be configured both as standalone processors and as end-node systems in large distributed networks.     Wang also said it is introducing a 1/4-inch streaming caRtridge tape drive for system back-up and two SCSI-technology portable Winchester disk drives for increased security, greater capaicty and faster throughput.     It said the caRtridge tape dirve is priced at 4,000 dlrs. The new disk drives are priced at 9,000 dlrs for a 72MB model and 15,000 dlrs for a 145MB model.     The company said the new computers and storage devices, available in May, comply with the U.S. Government's NACSIM 5100A specifications.  Reuter &#3;
+

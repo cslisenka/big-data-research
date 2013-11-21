@@ -1,0 +1,6 @@
+19-OCT-1987 13:53:18.35
+
+LSI LOGIC <LLSI.O> DEVELOPS NEW COMPUTER CHIP
+
+LSI Logic Corp said it has developed a semi-custom microchip that is twice as dense as the most complex chip now available.     The new microchip, LCA 100K Compacted Array Plus, has 100,000 usable gate arrays, or the equivalent of 400,000 transistors for designing custom chips, the company said.     Production of the new chip will begin in about 15 months, said LSI Chairman Wilfred Corrigan.     The microchip can be used in products including computers, telecommunications and military equipment, allowing them to operate faster with improved reliability, the company said.     "This technology will pave the way for new uses in artificial intelligence, speech recognition and speech synthesis, as well as digital signal processing and image processing," Corrigan said. He also predicted the microchip will add about five pct to the company's revenues next year.     Analyst Millard Phelps of Hambrecht and Quist Inc said he expects LSI to finish its 1987 fiscal year with per share earnings of 24 cts, on sales of 252 mln dlrs. He put 1988 earnings at 60 cts per share on 330 mln dlrs in sales.    In the nine months ended Sept 27, LSI had earnings of 14 cts per share, or 5,560,000 dlrs, on 183.9 mln dlrs in sales.  Reuter &#3;
+

@@ -1,0 +1,6 @@
+19-OCT-1987 08:59:16.47
+
+TANDEM <TDM> HAS OPTICAL DISK SUBSYSTEM
+
+Tandem Computers Inc said it has introduced an 84-gigabyte write-once, read-many-times optical disk library subsystem called the 5200 Optical Storage Facility for use with Tandem NonStop computer systems VLX, TXP, NonStop II, EXT25 and EXT10.     The company said the facility contains two read/write disk drives, a formatter and an automatic changer for up to 32 disk cartridges, each holding 2.62 gigabytes of data.  It said the 52oo provides an average access time of 250 milliseconds for data on an optical disk cartridge already mouinted and 17 seconds when a cartridge must be changed.     Tandem said deliveries will start this quarter.  It said the 5200 is priced at 155,000 dlrs.     It said the software initial license fee is 5,300 dlrs and the monthly license fee is 100 dlrs with the NonStop VLX, TXP, NonStop II and EXT25 systems and the fees are 2,650 dlrs and 50 dlrs respectively with the EXT10 system.  Reuter &#3;
+

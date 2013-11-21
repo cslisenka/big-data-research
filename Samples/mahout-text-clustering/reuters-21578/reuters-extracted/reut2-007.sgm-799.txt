@@ -1,0 +1,6 @@
+20-MAR-1987 12:19:07.10
+
+ASTROCOM <ACOM> ADDS NEW NETWORKING PRODUCTS
+
+Astrocom Corp said it added two new products aimed at improving on-premise data network efficiency.     Its ATDM/MS six-port time-division multiplexor is designed to combine and send data from up to 18 remove terminals on a single transmission link to the controller in the central network.     The other product, the Squeeziplexor 3074 coaxial multiplexor, is a low-profile version of the company's Squeeziplexor system that allows one coaxial cable to replace up to 32 individual cables connecting terminals and printers to the central controller.  Reuter &#3;
+

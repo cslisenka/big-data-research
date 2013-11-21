@@ -1,0 +1,6 @@
+ 2-MAR-1987 12:54:03.77
+
+AIBD, CEDEL, EUROCLEAR JOIN IN TRADE MATCH SYSTEM
+
+The Association of International Bond Dealers, AIBD, said it will cooperate with major clearing agencies Cedel and Euroclear on a eurobond trade confirmation and matching system to come into force by September this year.     The system, designed to give market participants a fast and reliable way of checking whether transactions are matched, will initially cover reporting of confirmed and mismatched trades.     It will include recording additional trade data, checking, comparison and matching any new elements but will only apply initially to delivery against payment transactions, AIBD said.     The AIBD said in a statement it would be responsible for developing suitable rules to back up the two clearing systems when they introduce their new matching matching facilities and confirmation systems by September this year.     Euroclear and Cedel intend to bring a "trade date-plus-one" matching capacity, reporting on a given day on trades entered by 1000 London time, designed to work with a planned AIBD rule requiring the entry of previous day's trades by that time.     The confirmation system covering critical trade data is designed to aid the trader and the settlements department and also reduce trading risks in volatile markets, AIBD said.  Reuter &#3;
+

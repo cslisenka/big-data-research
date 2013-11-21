@@ -1,0 +1,6 @@
+ 1-JUN-1987 11:17:59.70
+
+NOVELL <NOVL.O> UNVEILS NETWORKING PRODUCTS
+
+Novell Inc said it introduced a series of new networking products that extend its NetWare local area network (LAN) communications.     One of the new products, an asynchronous bridge, connects multiple remote NetWare LANs to a local to a local NetWare LAN over telephone lines using high-speed modems, Novell said.     Novell also said it has introduced a new asynchronous gateway which provides NetWare LANS with access to resources on minicomputers from Digital Equipment Corp <DEC>, Data General <DGN>, Hewlett-Packard <HWP>, Prime Computer Inc <PRM> and Tandem Computers <TDM>.     Novell also said that its CXI Inc unit has introduced a series of new International Business Machines Corp <IBM> gateway products including a 40-session coaxial gateway software, a variety of LAN workstation gateway sofware and new software for PCOX gateways.  Reuter &#3;
+
