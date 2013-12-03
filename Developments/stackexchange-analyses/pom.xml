@@ -1,23 +1,31 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>by.kslisenko</groupId>
+	<groupId>by.bsuir.kslisenko</groupId>
 	<artifactId>stackexchange-analyses</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0</version>
+	<version>1.0-SNAPSHOT</version>
 
 	<properties>
 		<jackson.version>2.1.4</jackson.version>
 		<hadoop.version>0.20.203.0</hadoop.version>
 		<neo4j.version>1.9.3</neo4j.version>
+		<mahout.version>0.6</mahout.version>
 	</properties>
 
 	<modules>
-		<module>stackexchange-analyses-hadoop-preparation</module>
+		<module>stackexchange-analyses-hadoop-mahout</module>
+		<module>stackexchange-analyses-web</module>
+		<module>neo4j-import-util</module>
 	</modules>
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>by.kslisenko</groupId>
+				<artifactId>resources-tree-utils</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.apache.hadoop</groupId>
 				<artifactId>hadoop-core</artifactId>
@@ -78,11 +86,44 @@
 				<version>${neo4j.version}</version>
 			</dependency>
 
+			<!-- Wrapper library for external server interaction. Acts in a GraphDatabaseService 
+				way like in Neo4jEmbeddedExamplesTest, but interacts with external server. -->
 			<dependency>
 				<groupId>org.neo4j</groupId>
 				<artifactId>neo4j-rest-graphdb</artifactId>
 				<version>1.9.3-SNAPSHOT</version>
 			</dependency>
+
+			<!-- Used for making JSON requests to external Neo4j server manually. -->
+			<dependency>
+				<groupId>com.sun.jersey</groupId>
+				<artifactId>jersey-client</artifactId>
+				<version>1.17.1</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.mahout</groupId>
+				<artifactId>mahout-core</artifactId>
+				<version>${mahout.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<inherited>true</inherited>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+						<optimize>true</optimize>
+						<debug>true</debug>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>
