@@ -34,6 +34,7 @@ public class Neo4jImporter {
 
 //	private static final String SERVER = "http://54.204.44.21:7474/db/data";
 	private static final String SERVER = "http://localhost:7474/db/data";
+	private static final int BATCH_SIZE = 10000; // Objects imported per transaction
 	private GraphDatabaseService graphDb;
 	private String serverUri;
 	private String pathToClusters;
@@ -70,8 +71,12 @@ public class Neo4jImporter {
 		
 		// TODO use VectorHelper.vectorToSortedString(vector, dictionary)
 		ReaderHandler<LongWritable, ClusteredDocument> handler = new ReaderHandler<LongWritable, ClusteredDocument>() {
+			private int itemsInTransaction = 0;
+			private Transaction currentTx;
+			
 			@Override
 			public void before() throws IOException {
+				currentTx = graphDb.beginTx();
 			}
 
 			@Override
@@ -82,10 +87,20 @@ public class Neo4jImporter {
 				out.println("Title: " + value.getDocumentTitle());
 				out.println("Content: " + value.getDocumentContent());
 				addPoint(key.toString(), value.getClusterId().toString(), value.getDocumentTitle().toString(), value.getDocumentContent().toString());
+				
+				itemsInTransaction++;
+				if (itemsInTransaction >= BATCH_SIZE) {
+					// Finish previous transaction and start new
+					currentTx.success();
+					currentTx.finish();
+					currentTx = graphDb.beginTx();
+				}				
 			}
 
 			@Override
 			public void after() throws IOException {
+				currentTx.success();
+				currentTx.finish();				
 			}
 		};
 		
@@ -93,21 +108,15 @@ public class Neo4jImporter {
 	}
 	
 	private void addPoint(String id, String clusterId, String title, String content) {
-		Transaction tx = graphDb.beginTx();
-		try {
-			Node pointNode = graphDb.createNode();
-			pointNode.setProperty("id", id);
-			pointNode.setProperty("title", title);
-			pointNode.setProperty("content", content);
-			pointsIndex.add(pointNode, "id", id);
-			
-			Node clusterNode = clusterIndex.get("id", clusterId).getSingle();
-			clusterNode.createRelationshipTo(pointNode, RelTypes.CONTAINS);
-			// Property can be similarity measure
-			tx.success();
-		} finally {
-			tx.finish();
-		}
+		Node pointNode = graphDb.createNode();
+		pointNode.setProperty("id", id);
+		pointNode.setProperty("title", title);
+		pointNode.setProperty("content", content);
+		pointsIndex.add(pointNode, "id", id);
+		
+		Node clusterNode = clusterIndex.get("id", clusterId).getSingle();
+		clusterNode.createRelationshipTo(pointNode, RelTypes.CONTAINS);
+		// Property can be similarity measure
 	}
 
 	private void addClusters(Configuration conf) throws IOException {
@@ -126,8 +135,12 @@ public class Neo4jImporter {
 		}
 		
 		ReaderHandler<Text, Cluster> handler = new ReaderHandler<Text, Cluster>() {
+			private int itemsInTransaction = 0;
+			private Transaction currentTx;
+			
 			@Override
 			public void before() throws IOException {
+				currentTx = graphDb.beginTx();
 			}
 
 			@Override
@@ -136,32 +149,35 @@ public class Neo4jImporter {
 				String name = getClusterName(value, dictionary);
 				out.println(name);
 				addCluster(value.getId() + "", name, value.getNumPoints(), rootNode);
+				itemsInTransaction++;
+				if (itemsInTransaction >= BATCH_SIZE) {
+					// Finish previous transaction and start new
+					currentTx.success();
+					currentTx.finish();
+					currentTx = graphDb.beginTx();
+				}
 			}
 
 			@Override
 			public void after() throws IOException {
+				currentTx.success();
+				currentTx.finish();
 			}
 		};
 		SequenceFileReaderUtil.readPartFilesInDir(pathToClusters, 1000000, conf, new ConsoleReaderHandler<Text, Cluster>(handler));
 	}
 	
 	private void addCluster(String id, String name, long numPoints, Node rootNode) {
-		Transaction tx = graphDb.beginTx();
-		try {
-			Node clusterNode = graphDb.createNode();
-			clusterNode.setProperty("id", id);
-			clusterNode.setProperty("name", name);
-			clusterNode.setProperty("numPoints", numPoints);
-			clusterIndex.add(clusterNode, "id", id);
-			rootNode.createRelationshipTo(clusterNode, RelTypes.CONTAINS);
-			tx.success();
-		} finally {
-			tx.finish();
-		}
+		Node clusterNode = graphDb.createNode();
+		clusterNode.setProperty("id", id);
+		clusterNode.setProperty("name", name);
+		clusterNode.setProperty("numPoints", numPoints);
+		clusterIndex.add(clusterNode, "id", id);
+		rootNode.createRelationshipTo(clusterNode, RelTypes.CONTAINS);
 	}
 	
 	public static void main(String[] args) throws IOException {
-		final String BASE = "target/stackoverflow-output-base/";
+		final String BASE = "../stackexchange-analyses-hadoop-mahout/target/stackoverflow-output-base/";
 		Neo4jImporter importer = new Neo4jImporter(SERVER, 
 				BASE + "kmeans/clusters-2-final",
 				BASE + "clusteredPosts",

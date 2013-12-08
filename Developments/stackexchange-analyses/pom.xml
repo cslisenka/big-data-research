@@ -22,16 +22,13 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>by.kslisenko</groupId>
-				<artifactId>resources-tree-utils</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
 				<groupId>org.apache.hadoop</groupId>
 				<artifactId>hadoop-core</artifactId>
 				<version>${hadoop.version}</version>
 			</dependency>
-			<dependency>
+			<!--
+			TODO if we really need them?
+			 dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-databind</artifactId>
 				<version>${jackson.version}</version>
@@ -50,7 +47,7 @@
 				<groupId>com.fasterxml.jackson.datatype</groupId>
 				<artifactId>jackson-datatype-guava</artifactId>
 				<version>2.1.2</version>
-			</dependency>
+			</dependency -->
 
 			<dependency>
 				<groupId>org.apache.mrunit</groupId>
@@ -72,12 +69,13 @@
 				<version>1.3.2</version>
 			</dependency>
 
-			<!-- Dependencies for running on clouderra vm -->
-			<dependency>
+			<!-- Dependencies for running on clouderra vm 
+			TODO if we really need them?-->
+			<!-- dependency>
 				<groupId>org.codehaus.jackson</groupId>
 				<artifactId>jackson-mapper-asl</artifactId>
 				<version>1.5.0</version>
-			</dependency>
+			</dependency -->
 
 			<!-- Neo4j dependencies -->
 			<dependency>
@@ -94,12 +92,13 @@
 				<version>1.9.3-SNAPSHOT</version>
 			</dependency>
 
-			<!-- Used for making JSON requests to external Neo4j server manually. -->
-			<dependency>
+			<!-- Used for making JSON requests to external Neo4j server manually. 
+			TODO if we really need them?-->
+			<!-- dependency>
 				<groupId>com.sun.jersey</groupId>
 				<artifactId>jersey-client</artifactId>
 				<version>1.17.1</version>
-			</dependency>
+			</dependency -->
 
 			<dependency>
 				<groupId>org.apache.mahout</groupId>

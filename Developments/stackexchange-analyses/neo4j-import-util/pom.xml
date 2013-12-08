@@ -35,10 +35,6 @@
 			<artifactId>neo4j</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-client</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.neo4j</groupId>
 			<artifactId>neo4j-rest-graphdb</artifactId>
 		</dependency>
