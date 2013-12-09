@@ -1,35 +1,44 @@
 <!doctype html>
-<html ng-app="topics">
+<html ng-app="phonecatApp">
   <head>
-    <script src="lib/angular/angular.min.js"></script>
-    <script src="lib/jquery/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="lib/jquery/jquery.highlight-3.js"></script>
-    <script src="scripts/controllers/clustering.js"></script>
-    <style>
-    .cluster {background: #E0E0E0; margin: 5px; padding: 10px; cursor: hand; float: left; cursor: pointer;}
-    .selected {background: #A0A0A0; color: white;}
-    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular-route.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/clusters-search.js"></script>
+    <script src="scripts/controllers/clusters-circles.js"></script>
+    
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
   </head>
-  <body ng-controller="ClustersListController">
-  	<h1>Mahout clustering example</h1>
-  	<p>Clustering questions at <a href="http://photo.stackexchange.com">photo.stackexchange.com</a> website</p>
-	<div>
-		<h2>Search clusters:</h2> 
-		<input type="text" ng-model="query" />
-	</div>
-	<img src="images/loading.gif" ng-show="loading" style="position: absolute; left: 40%; top: 40%; height: 150px;"/>
-	<div style="margin-top: 20px; width: 50%; float: left;">
-		<!-- TODO sort clusters, print bigget in the first, smaller in the second -->		
-		<div ng-repeat="cluster in clusters | filter:query" class="cluster" 
-			ng-class="{selected : $index == selected}" style="font-size: {{cluster.numPoints < 50 ? cluster.numPoints / 2 : 30}}px" 
-			ng-click="getDocuments(cluster.id, cluster.name, $index)">
-			{{cluster.name}} ({{cluster.numPoints}})
+  <body>
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Mahout clustering example</a>
+			</div>
 		</div>
 	</div>
-	<div style="margin-top: 50px; width: 50%; float: left;" id="documents" class="highlight-content">
-		<div ng-repeat="document in documents" class="document">
-			<b>{{document.title}}</b><p>{{document.content}}<p>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Mahout stackexchange clustering!</h1>
+			<p>This webpage shows clustering <a href="http://photo.stackexchange.com">photo.stackexchange.com</a> website clustering</p>
+			<p>
+				<a class="btn btn-primary btn-lg" href="#/" role="button">View all clusters &raquo;</a>
+				<a class="btn btn-primary btn-lg" href="#/circles" role="button">View clusters circles visualization&raquo;</a>
+			</p>
 		</div>
+	</div>
+
+    <div style="padding-left: 50px; padding-right: 50px;" ng-view>
 	</div>
   </body>
 </html>

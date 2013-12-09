@@ -18,6 +18,7 @@ public class GetDocumentsJsonAction extends ActionSupport {
 	private List<ClusteredDocument> documents = new ArrayList<ClusteredDocument>();
 	
 	public String index() {
+		documents.clear();
 		ClusteredDocumentService service = ServiceFactory.getDocumentService();
 		documents.addAll(service.getClusteredDocuments(clusterId));
 		return "success";

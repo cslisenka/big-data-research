@@ -14,6 +14,7 @@ public class GetClustersJsonAction extends ActionSupport {
 	private List<Cluster> clusters = new ArrayList<Cluster>();
 	
 	public String index() {
+		clusters.clear();
 		ClusterService service = ServiceFactory.getClusterService();
 		clusters.addAll(service.getClusters());
 		return "success";

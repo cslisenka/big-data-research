@@ -34,7 +34,7 @@ public class Neo4jImporter {
 
 //	private static final String SERVER = "http://54.204.44.21:7474/db/data";
 	private static final String SERVER = "http://localhost:7474/db/data";
-	private static final int BATCH_SIZE = 10000; // Objects imported per transaction
+	private static final int BATCH_SIZE = 1; // Objects imported per transaction
 	private GraphDatabaseService graphDb;
 	private String serverUri;
 	private String pathToClusters;
@@ -46,6 +46,9 @@ public class Neo4jImporter {
 	private Index<Node> clusterIndex;
 	private Index<Node> pointsIndex;
 	
+	private Transaction currentTx;
+	private int itemsInTransaction = 0;
+	
 	public Neo4jImporter(String serverUri, String pathToClusters, String pathToPoints, String pathToDictionary) {
 		this.serverUri = serverUri;
 		this.pathToClusters = pathToClusters;
@@ -54,6 +57,7 @@ public class Neo4jImporter {
 	}
 	
 	public void doImport() throws IOException {
+		long startTime = System.currentTimeMillis();
 		graphDb = new RestGraphDatabase(serverUri);
 		
 		Configuration conf = new Configuration();
@@ -64,6 +68,7 @@ public class Neo4jImporter {
 		
 		// Import points
 		addPoints(conf);
+		System.out.println("Time: " + (System.currentTimeMillis() - startTime) / 1000 + " seconds");
 	}
 
 	private void addPoints(Configuration conf) throws IOException {
@@ -71,21 +76,17 @@ public class Neo4jImporter {
 		
 		// TODO use VectorHelper.vectorToSortedString(vector, dictionary)
 		ReaderHandler<LongWritable, ClusteredDocument> handler = new ReaderHandler<LongWritable, ClusteredDocument>() {
-			private int itemsInTransaction = 0;
-			private Transaction currentTx;
-			
 			@Override
 			public void before() throws IOException {
-				currentTx = graphDb.beginTx();
 			}
 
 			@Override
 			public void read(LongWritable key, ClusteredDocument value, PrintStream out) throws IOException {
 				// Key = document ID
-				out.println("Key: " + key);
-				out.println("Cluster ID: " + value.getClusterId());
-				out.println("Title: " + value.getDocumentTitle());
-				out.println("Content: " + value.getDocumentContent());
+//				out.println("Key: " + key);
+//				out.println("Cluster ID: " + value.getClusterId());
+//				out.println("Title: " + value.getDocumentTitle());
+//				out.println("Content: " + value.getDocumentContent());
 				addPoint(key.toString(), value.getClusterId().toString(), value.getDocumentTitle().toString(), value.getDocumentContent().toString());
 				
 				itemsInTransaction++;
@@ -94,17 +95,22 @@ public class Neo4jImporter {
 					currentTx.success();
 					currentTx.finish();
 					currentTx = graphDb.beginTx();
+					itemsInTransaction = 0;
 				}				
 			}
 
 			@Override
 			public void after() throws IOException {
-				currentTx.success();
-				currentTx.finish();				
 			}
 		};
 		
+		currentTx = graphDb.beginTx();
+		
 		SequenceFileReaderUtil.readPartFilesInDir(pathToPoints, 10000000, conf, new ConsoleReaderHandler<LongWritable, ClusteredDocument>(handler));
+		
+		currentTx.success();
+		currentTx.finish();		
+		itemsInTransaction = 0;
 	}
 	
 	private void addPoint(String id, String clusterId, String title, String content) {
@@ -135,19 +141,13 @@ public class Neo4jImporter {
 		}
 		
 		ReaderHandler<Text, Cluster> handler = new ReaderHandler<Text, Cluster>() {
-			private int itemsInTransaction = 0;
-			private Transaction currentTx;
-			
 			@Override
 			public void before() throws IOException {
-				currentTx = graphDb.beginTx();
 			}
 
 			@Override
 			public void read(Text key, Cluster value, PrintStream out) throws IOException {
-				out.println("Cluster id: " + value.getId());
 				String name = getClusterName(value, dictionary);
-				out.println(name);
 				addCluster(value.getId() + "", name, value.getNumPoints(), rootNode);
 				itemsInTransaction++;
 				if (itemsInTransaction >= BATCH_SIZE) {
@@ -155,16 +155,22 @@ public class Neo4jImporter {
 					currentTx.success();
 					currentTx.finish();
 					currentTx = graphDb.beginTx();
+					itemsInTransaction = 0;
 				}
 			}
 
 			@Override
 			public void after() throws IOException {
-				currentTx.success();
-				currentTx.finish();
 			}
 		};
+		
+		currentTx = graphDb.beginTx();
+		
 		SequenceFileReaderUtil.readPartFilesInDir(pathToClusters, 1000000, conf, new ConsoleReaderHandler<Text, Cluster>(handler));
+		
+		currentTx.success();
+		currentTx.finish();
+		itemsInTransaction = 0;
 	}
 	
 	private void addCluster(String id, String name, long numPoints, Node rootNode) {

@@ -4,22 +4,30 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<constant name="struts.devMode" value="true" />
-	<constant name="struts.custom.i18n.resources" value="global" />	
-	<constant name="struts.i18n.encoding" value="UTF-8" />	
-	
-	<constant name="struts.convention.action.packages" value="by.bsuir.kslisenko.action"/>
-	
-	<package name="action" namespace="/" extends="struts-default, json-default">
+	<constant name="struts.custom.i18n.resources" value="global" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+
+	<constant name="struts.convention.action.packages" value="by.bsuir.kslisenko.action" />
+
+	<package name="action" namespace="/json" extends="struts-default, json-default">
 		<result-types>
-		    <result-type name="json" class="org.apache.struts2.json.JSONResult" />
-        </result-types>
-		
-		<action name="getClustersJsonAction" class="by.bsuir.kslisenko.action.GetClustersJsonAction" method="index">
-			<result name="success" type="json"/>	
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
+
+		<default-action-ref name="index" />
+
+		<action name="index">
+			<result>/index.html</result>
+		</action>	
+
+		<action name="getClustersJsonAction" class="by.bsuir.kslisenko.action.GetClustersJsonAction"
+			method="index">
+			<result name="success" type="json" />
 		</action>
-		
-		<action name="getDocumentsJsonAction" class="by.bsuir.kslisenko.action.GetDocumentsJsonAction" method="index">
-			<result name="success" type="json"/>	
-		</action>		
+
+		<action name="getDocumentsJsonAction" class="by.bsuir.kslisenko.action.GetDocumentsJsonAction"
+			method="index">
+			<result name="success" type="json" />
+		</action>
 	</package>
 </struts>

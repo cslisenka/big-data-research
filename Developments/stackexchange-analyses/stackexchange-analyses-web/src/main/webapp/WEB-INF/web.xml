@@ -9,7 +9,7 @@
 
 	<filter-mapping>
 		<filter-name>struts2</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/json/*</url-pattern>
 	</filter-mapping>
 
 	<welcome-file-list>

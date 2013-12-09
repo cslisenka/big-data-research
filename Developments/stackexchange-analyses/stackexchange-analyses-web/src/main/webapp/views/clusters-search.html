@@ -1,0 +1,27 @@
+<style>
+.cluster {background: #E0E0E0; margin: 5px; padding: 10px; cursor: hand; float: left; cursor: pointer;}
+.selected {background: #A0A0A0; color: white;}
+</style>
+<div ng-app="phonecatControllers" ng-controller="ClustersSearch">
+	<div>
+		<h2>Search clusters:</h2> 
+		<input type="text" ng-model="query" />
+	</div>
+	
+	<img src="images/loading.gif" ng-show="loading" style="position: absolute; left: 40%; top: 40%; height: 150px;"/>
+	
+	<div style="margin-top: 20px; width: 50%; float: left;">
+		<!-- TODO sort clusters, print bigget in the first, smaller in the second -->
+		<a class="btn btn-default" role="button" ng-repeat="cluster in clusters | filter:query" class="cluster" 
+			ng-class="{selected : $index == selected}" style="font-size: {{cluster.numPoints < 50 ? cluster.numPoints / 2 : 30}}px" 
+			ng-click="getDocuments(cluster.id, cluster.name, $index)">
+				{{cluster.name}} ({{cluster.numPoints}})
+		</a>
+	</div>
+	
+	<div style="margin-top: 50px; width: 50%; float: left;" id="documents" class="highlight-content">
+		<div ng-repeat="document in documents" class="document">		
+			<b>{{document.title}}</b><p>{{document.content}}<p>
+		</div>
+	</div>
+</div>
