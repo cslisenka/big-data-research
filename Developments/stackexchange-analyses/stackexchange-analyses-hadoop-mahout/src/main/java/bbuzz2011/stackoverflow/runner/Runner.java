@@ -9,10 +9,7 @@ import org.apache.mahout.clustering.kmeans.KMeansDriver;
 import org.apache.mahout.common.HadoopUtil;
 import org.apache.mahout.common.distance.CosineDistanceMeasure;
 import org.apache.mahout.vectorizer.SparseVectorsFromSequenceFiles;
-import org.apache.solr.client.solrj.embedded.JettySolrRunner;
-import org.apache.solr.client.solrj.impl.CommonsHttpSolrServer;
 
-import bbuzz2011.stackoverflow.index.PostIndexer;
 import bbuzz2011.stackoverflow.join.ClusterJoinerJob;
 import bbuzz2011.stackoverflow.join.PointToClusterMappingJob;
 import bbuzz2011.stackoverflow.preprocess.text.StackOverflowPostTextExtracterJob;
@@ -31,7 +28,6 @@ public class Runner {
     private Configuration configuration = new Configuration();
     private Path outputBasePath = new Path("target/stackoverflow-output-base/");
 
-    private CommonsHttpSolrServer solrClient;
     private String outputDictionaryPattern;
     private Path outputPostsPath;
     private Path outputSeq2SparsePath;
@@ -44,7 +40,6 @@ public class Runner {
 
     private void run() throws Exception {
         cleanOutputBasePath();
-        startSolr();
         preProcess();
         vectorize();
         cluster();
@@ -53,18 +48,6 @@ public class Runner {
 
     private void cleanOutputBasePath() throws IOException {
         HadoopUtil.delete(configuration, outputBasePath);
-    }
-
-    private void startSolr() throws Exception {
-        String context = "/core0";
-        int port = 8983;
-
-        System.setProperty("solr.solr.home", "src/main/solr");
-        JettySolrRunner solr = new JettySolrRunner("/", port);
-        solr.start(false);
-
-        solrClient = new CommonsHttpSolrServer("http://localhost:" + port + context);
-        solrClient.deleteByQuery("*:*");
     }
 
     private void preProcess() throws ClassNotFoundException, IOException, InterruptedException {
@@ -152,9 +135,5 @@ public class Runner {
         ClusterJoinerJob clusterJoinerJob = new ClusterJoinerJob(outputPostsPath, pointsToClusterPath, clusteredPostsPath);
         clusterJoinerJob.setConf(configuration);
         clusterJoinerJob.run();
-
-        PostIndexer postIndexer = new PostIndexer(new Path(outputBasePath, "clusteredPosts/*"), outputFinalClustersPath, outputDictionaryPattern, solrClient);
-        postIndexer.setConf(configuration);
-        postIndexer.buildIndex();
     }
 }
