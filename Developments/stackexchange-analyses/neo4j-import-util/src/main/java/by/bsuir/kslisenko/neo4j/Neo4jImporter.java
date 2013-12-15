@@ -32,9 +32,9 @@ import by.bsuir.kslisenko.util.handler.ConsoleReaderHandler;
  */
 public class Neo4jImporter {
 
-//	private static final String SERVER = "http://54.204.44.21:7474/db/data";
-	private static final String SERVER = "http://localhost:7474/db/data";
-	private static final int BATCH_SIZE = 1; // Objects imported per transaction
+	private static final String SERVER = "http://50.16.193.54:7474/db/data";
+//	private static final String SERVER = "http://localhost:7474/db/data";
+	private static final int BATCH_SIZE = 25000; // Objects imported per transaction
 	private GraphDatabaseService graphDb;
 	private String serverUri;
 	private String pathToClusters;
@@ -78,15 +78,11 @@ public class Neo4jImporter {
 		ReaderHandler<LongWritable, ClusteredDocument> handler = new ReaderHandler<LongWritable, ClusteredDocument>() {
 			@Override
 			public void before() throws IOException {
+				currentTx = graphDb.beginTx();
 			}
 
 			@Override
 			public void read(LongWritable key, ClusteredDocument value, PrintStream out) throws IOException {
-				// Key = document ID
-//				out.println("Key: " + key);
-//				out.println("Cluster ID: " + value.getClusterId());
-//				out.println("Title: " + value.getDocumentTitle());
-//				out.println("Content: " + value.getDocumentContent());
 				addPoint(key.toString(), value.getClusterId().toString(), value.getDocumentTitle().toString(), value.getDocumentContent().toString());
 				
 				itemsInTransaction++;
@@ -96,21 +92,22 @@ public class Neo4jImporter {
 					currentTx.finish();
 					currentTx = graphDb.beginTx();
 					itemsInTransaction = 0;
-				}				
+					System.out.println("Commit transaction with " + itemsInTransaction + " nodes");
+				}			
 			}
 
 			@Override
 			public void after() throws IOException {
+				currentTx.success();
+				currentTx.finish();
+				System.out.println("Commit transaction with " + itemsInTransaction + " nodes");
+				itemsInTransaction = 0;				
 			}
 		};
 		
 		currentTx = graphDb.beginTx();
 		
-		SequenceFileReaderUtil.readPartFilesInDir(pathToPoints, 10000000, conf, new ConsoleReaderHandler<LongWritable, ClusteredDocument>(handler));
-		
-		currentTx.success();
-		currentTx.finish();		
-		itemsInTransaction = 0;
+		SequenceFileReaderUtil.readPartFilesInDir(pathToPoints, 10000000, conf, handler);
 	}
 	
 	private void addPoint(String id, String clusterId, String title, String content) {
@@ -143,6 +140,7 @@ public class Neo4jImporter {
 		ReaderHandler<Text, Cluster> handler = new ReaderHandler<Text, Cluster>() {
 			@Override
 			public void before() throws IOException {
+				currentTx = graphDb.beginTx();
 			}
 
 			@Override
@@ -156,21 +154,20 @@ public class Neo4jImporter {
 					currentTx.finish();
 					currentTx = graphDb.beginTx();
 					itemsInTransaction = 0;
+					System.out.println("Commit transaction with " + itemsInTransaction + " nodes");
 				}
 			}
 
 			@Override
 			public void after() throws IOException {
+				currentTx.success();
+				currentTx.finish();
+				System.out.println("Commit transaction with " + itemsInTransaction + " nodes");
+				itemsInTransaction = 0;
 			}
 		};
 		
-		currentTx = graphDb.beginTx();
-		
-		SequenceFileReaderUtil.readPartFilesInDir(pathToClusters, 1000000, conf, new ConsoleReaderHandler<Text, Cluster>(handler));
-		
-		currentTx.success();
-		currentTx.finish();
-		itemsInTransaction = 0;
+		SequenceFileReaderUtil.readPartFilesInDir(pathToClusters, 1000000, conf, handler);
 	}
 	
 	private void addCluster(String id, String name, long numPoints, Node rootNode) {

@@ -1,0 +1,76 @@
+<style>
+.main-page-picture {width: 150px; float: left; margin-right: 15px;}
+</style>
+
+<div class="container">
+	<div class="row">
+		<p>
+			This web application shows different visualizations of stackoverflow web-sites. Source data for processing taken <a href="http://www.clearbits.net/creators/146-stack-exchange-data-dump" target="blank">here</a>.
+			For data processing used machine learning clustering algorithms. Calculations done using by Mahout library, Apache Hadoop and data stored in Neo4j graph database. 
+		</p>
+		<p>
+			Research work based on this <a href="https://github.com/frankscholten/mahout-clustering-stackoverflow" target="blank">code</a>, by <a href="https://github.com/frankscholten" target="blank">Frank Scholten</a>.
+		</p>
+	</div>
+
+	<div class="row">
+		<h3>Visualizations</h3>
+		<hr>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<h2>Search clusters and posts</h2>
+			<p>Posts clustered using K-Means algorithm. This demo shows list of clusters (posts groups). You view list of clusters, search them and view posts belongs to each cluster.</p>
+			<p><a class="btn btn-default" href="#/photo/search" role="button">View details &raquo;</a></p>
+		</div>
+		<div class="col-md-4">
+			<h2>Posts groups as circles</h2>
+			<p>Clusters (post groups) displayed as circles with different size. The cluster size depends of posts count belong to this cluster.</p>
+			<p><a class="btn btn-default" href="#/photo/circles" role="button">View details &raquo;</a></p>
+		</div>
+		<div class="col-md-4">
+			<h2>Multiple posts in group</h2>
+			<p>Example of using Fuzzy K-Means algorithm in mahout. This visualization development is in progress now.</p>
+		</div>
+	</div>
+	
+	<div class="row">
+		<h3>Tools and technologies used</h3>
+		<hr>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<h2>Apache Hadoop</h2>
+			<p>
+				<img src="images/hadoop-logo.jpg" class="img-thumbnail main-page-picture">
+				Apache Hadoop used as the basis for all calculations and for pre-processing and post-processing data.
+				Before run any machine learning algorithm we beed to do several preparation steps like removing stop-words,
+				extracting data from raw source files, preparing input data for mahout machine learning library (save in specific format).
+			</p>
+			<p><a class="btn btn-default" href="http://hadoop.apache.org" role="button" target="blank">Go to website &raquo;</a></p>
+		</div>
+		<div class="col-md-4">
+			<h2>Apache Mahout</h2>
+			<p>
+				<img src="images/mahout-logo.png" class="img-thumbnail main-page-picture">
+				Library with machine-learning algorithms over hadoop. Contains a lot of ready map-reduce jobs for clustering, classification and recomendation systems development.
+				For processing stackexchange data used TF-IDF, K-Means, Fuzzy K-Means clustering algorithms. 
+			</p>
+			<p><a class="btn btn-default" href="http://mahout.apache.org" role="button" target="blank">Go to website &raquo;</a></p>
+		</div>
+		<div class="col-md-4">
+			<h2>Neo4j graph database</h2>
+			<p>
+				<img src="images/neo4j-logo.png" class="img-thumbnail main-page-picture">
+				Graph database used for storing custered data and relationships. Graph database is good as related objects storage.
+			</p>
+			<p><a class="btn btn-default" href="http://www.neo4j.org" role="button" target="blank">Go to website &raquo;</a></p>
+		</div>
+	</div>
+		
+	<footer>
+		<p>Konstantin Slisenko master's degree project, 2013. For any questions please email to kslisenko@gmail.com</p>
+	</footer>		
+</div>

@@ -10,6 +10,7 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.mahout.clustering.WeightedVectorWritable;
+import org.apache.mahout.clustering.canopy.Canopy;
 import org.apache.mahout.clustering.kmeans.Cluster;
 import org.apache.mahout.math.Vector;
 import org.apache.mahout.math.Vector.Element;
@@ -38,7 +39,7 @@ public class MySequenceFileReader {
 	// Number of documents to show at console
 	private static final int DOCUMENTS_COUNT = 10;	
 
-	private static final String BASE = "target/stackoverflow-output-base/";
+	private static final String BASE = "../stackexchange-analyses-hadoop-mahout/target/stackoverflow-output-base/";
 
 	/**
 	 * Dictionary in memory for better vectors visualization.
@@ -119,19 +120,24 @@ public class MySequenceFileReader {
 		// Points represent text documents
 		readClusteredPoints(conf, BASE + "kmeans/clusteredPoints");
 		
-		// 3.3 Final clusters
-		// Same output structure after initial clusters
-		readFinalClusters(conf, BASE + "kmeans/clusters-2-final");
+//		// 3.3 Final clusters
+//		// Same output structure after initial clusters
+//		readFinalClusters(conf, BASE + "kmeans/clusters-2-final");
+//		
+//		// 3.4 Read canopy clusters
+//		readCanopyClusters(BASE + "canopy/clusters-0-final", conf);
+
+		// 3.5 Read fuzzy k-means clistering
+		readClusters(BASE + "fuzzy-kmeans/clusters-1-final", conf);
 		
-		// 4. Post process data
-		
-		// 4.1 Read points to clusters mapping (information taked from clisters and points files)
-		// PointToClusterMappingJob
-		readPointsToClustersMapping(conf, BASE + "pointsToClusters");
-		
-		// 4.2 Read clustered posts file
-		// ClusterJoinerJob
-		readClusteredPosts(conf, BASE + "clusteredPosts");
+//		// 4. Post process data
+//		// 4.1 Read points to clusters mapping (information taked from clisters and points files)
+//		// PointToClusterMappingJob
+//		readPointsToClustersMapping(conf, BASE + "pointsToClusters");
+//		
+//		// 4.2 Read clustered posts file
+//		// ClusterJoinerJob
+//		readClusteredPosts(conf, BASE + "clusteredPosts");
 	}
 
 	private static void readClusteredPosts(Configuration conf, String path) throws IOException {
@@ -205,6 +211,31 @@ public class MySequenceFileReader {
 		
 		SequenceFileReaderUtil.readPartFilesInDir(path, TEXT_FILE_MAX_ROWS, conf, new TextFileOutputReaderHandler<Text, Cluster>(path + ".txt", handler));
 	}
+	
+	// TODO remove code duplication with kmeaks cluster reading
+	private static void readCanopyClusters(String path, Configuration conf) throws IOException {
+		ReaderHandler<Text, Canopy> handler = new ReaderHandler<Text, Canopy>() {
+			@Override
+			public void before() throws IOException {
+			}
+
+			@Override
+			public void read(Text key, Canopy value, PrintStream out) throws IOException {
+				out.println("Cluster id: " + key);
+				out.println("Num points: " + value.getNumPoints());
+				out.println("Count: " + value.count());
+				out.println("Centroid: " + printVectorWithDictionary(value.computeCentroid()));
+				out.println("");
+			}
+
+			@Override
+			public void after() throws IOException {
+			}
+		};
+		SequenceFileReaderUtil.readPartFilesInDir(path, 10, conf, new ConsoleReaderHandler<Text, Canopy>(handler));
+		
+		SequenceFileReaderUtil.readPartFilesInDir(path, TEXT_FILE_MAX_ROWS, conf, new TextFileOutputReaderHandler<Text, Canopy>(path + ".txt", handler));
+	}	
 
 	private static void readNGrams(Configuration conf, String path) throws IOException {
 		SequenceFileReaderUtil.readPartFilesInDirToConsole(path, 20, conf);

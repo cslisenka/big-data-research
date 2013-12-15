@@ -1,5 +1,6 @@
 phonecatApp.controller('ClustersCircles', ['$scope', '$routeParams',
 	function($scope, $routeParams) {
+		$("#pleaseWait").modal('show');
 		fillCircles();
 	}
 ]);
@@ -35,6 +36,8 @@ function fillCircles() {
 	      .attr("dy", ".3em")
 	      .style("text-anchor", "middle")
 	      .text(function(d) { return d.className.substring(0, d.r / 3); });
+	      
+	 $("#pleaseWait").modal('hide');
 	});
 	
 	function myClasses(root) {

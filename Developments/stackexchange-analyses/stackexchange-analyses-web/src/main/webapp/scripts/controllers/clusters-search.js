@@ -1,9 +1,9 @@
 phonecatApp.controller('ClustersSearch', ['$scope', '$http',
 	function ($scope, $http) {
 		$scope.getClusters = function() {
-			$scope.loading = true;
+			$("#pleaseWait").modal('show');
 			$http.get('json/getClustersJsonAction').success(function(data) {
-				$scope.loading = false;
+				$("#pleaseWait").modal('hide');
 				$scope.clusters = data.clusters;
 			}).error(function(data, status, headers, config) {
 				alert("error");
@@ -11,10 +11,10 @@ phonecatApp.controller('ClustersSearch', ['$scope', '$http',
     	}
     
 	    $scope.getDocuments = function(clusterId, clusterName, index) {
-			$scope.loading = true;
+			$("#pleaseWait").modal('show');
 			$scope.selected = index;      
 			$http.get('json/getDocumentsJsonAction?clusterId=' + clusterId).success(function(data) {
-				$scope.loading = false;
+				$("#pleaseWait").modal('hide');
 				$scope.documents = data.documents;
 			}).error(function(data, status, headers, config) {
 				alert("error");
@@ -24,4 +24,3 @@ phonecatApp.controller('ClustersSearch', ['$scope', '$http',
     	$scope.getClusters();
 	}
 ]);
-

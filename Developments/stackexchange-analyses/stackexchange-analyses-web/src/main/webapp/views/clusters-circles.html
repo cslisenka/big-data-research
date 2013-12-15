@@ -1,1 +1,20 @@
-<center id="clusters" ng-controller="ClustersCircles"></center>  	 
+<div ng-controller="ClustersCircles">
+	<!-- TODO as reusable component in Angular JS -->
+	<div class="modal fade" id="pleaseWait" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">Loading, please wait...</h4>
+				</div>
+				<div class="modal-body" style="text-align: center;">
+					<div class="progress progress-striped active">
+						<div class="progress-bar"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<center id="clusters"></center>
+<div>

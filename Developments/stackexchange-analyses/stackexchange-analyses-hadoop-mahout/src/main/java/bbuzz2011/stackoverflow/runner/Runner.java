@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.util.ToolRunner;
+import org.apache.mahout.clustering.canopy.CanopyDriver;
+import org.apache.mahout.clustering.fuzzykmeans.FuzzyKMeansDriver;
 import org.apache.mahout.clustering.kmeans.KMeansDriver;
 import org.apache.mahout.common.HadoopUtil;
 import org.apache.mahout.common.distance.CosineDistanceMeasure;
@@ -39,6 +41,9 @@ public class Runner {
     }
 
     private void run() throws Exception {
+        outputSeq2SparsePath = new Path(outputBasePath, "sparse");
+        outputVectorPath = new Path(outputSeq2SparsePath, "tfidf-vectors");
+        outputDictionaryPattern = new Path(outputSeq2SparsePath, "dictionary.file-*").toString();       	
         cleanOutputBasePath();
         preProcess();
         vectorize();
@@ -73,10 +78,6 @@ public class Runner {
      * @throws Exception
      */
     private void vectorize() throws Exception {
-        outputSeq2SparsePath = new Path(outputBasePath, "sparse");
-        outputVectorPath = new Path(outputSeq2SparsePath, "tfidf-vectors");
-        outputDictionaryPattern = new Path(outputSeq2SparsePath, "dictionary.file-*").toString();    	
-    	
         String[] seq2SparseArgs = new String[]{
                 "--input", new Path(outputBasePath, StackOverflowPostTextExtracterJob.OUTPUT_POSTS_TEXT).toString(),
                 "--output", outputSeq2SparsePath.toString(),
@@ -97,9 +98,7 @@ public class Runner {
     }
 
     private void cluster() throws Exception {
-        String algorithmSuffix = "kmeans";
-
-        Path outputKMeansPath = new Path(outputBasePath, algorithmSuffix);
+        Path outputKMeansPath = new Path(outputBasePath, "kmeans");
 
         // TODO where are initial clusters generated?
         String[] kmeansDriver = {
@@ -118,6 +117,42 @@ public class Runner {
         };
 
         ToolRunner.run(configuration, new KMeansDriver(), kmeansDriver);
+
+//        Path outputCanopy = new Path(outputBasePath, "canopy");        
+//        
+//        // TODO where are initial clusters generated?
+//        String[] canopyDriver = {
+//                "--input", outputVectorPath.toString(),
+//                "--output", outputCanopy.toString(),
+//                "--distanceMeasure", CosineDistanceMeasure.class.getName(),
+//                "--t1", "1500",
+//                "--t2", "2500",
+//                "--clusterFilter", "0"
+//        };        
+//        
+//        ToolRunner.run(configuration, new CanopyDriver(), canopyDriver);
+        
+        Path outputFuzzyKMeans = new Path(outputBasePath, "fuzzy-kmeans");        
+        
+        // TODO where are initial clusters generated?
+        String[] fuzzyKMeansDriver = {
+                "--input", outputVectorPath.toString(),
+                "--output", outputFuzzyKMeans.toString(),
+                "--distanceMeasure", CosineDistanceMeasure.class.getName(),
+                // Fuzziest
+                "--m", "3",
+				// Max iterations number
+				"--maxIter", "10",
+				//"-e", "false",
+				//"-t", "0",
+				"--method", "mapreduce",
+				"--clusters", "target/stackoverflow-fuzzy-kmeans-initial-clusters",
+				"--overwrite",
+				"--clustering",
+				"--numClusters", "250"
+        };        
+        
+//        ToolRunner.run(configuration, new FuzzyKMeansDriver(), fuzzyKMeansDriver);        
     }
 
     private void postProcess() throws Exception {
