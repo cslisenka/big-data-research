@@ -1,14 +1,9 @@
 <style>
-.cluster {background: #E0E0E0; margin: 5px; padding: 10px; cursor: hand; float: left; cursor: pointer;}
+.cluster {background: #E0E0E0; margin: 15px;}
 .selected {background: #A0A0A0; color: white;}
 </style>
 
 <div class="container" ng-controller="ClustersSearch">
-	<div>
-		<h2>Search clusters:</h2> 
-		<input type="text" ng-model="query" />
-	</div>
-	
 	<!-- TODO as reusable component in Angular JS -->
 	<div class="modal fade" id="pleaseWait" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -28,17 +23,25 @@
 
 	<div class="row">
 		<div class="col-md-8">
+			<div class="input-group">
+				<span class="input-group-addon">Search clusters</span>
+				<input type="text" class="form-control" placeholder="enter cluster name" ng-model="query">
+			</div>	
+			<br>		
+		
 			<!-- TODO sort clusters, print bigget in the first, smaller in the second -->
-			<a class="btn btn-default" role="button" ng-repeat="cluster in clusters | filter:query" class="cluster" 
+			<button type="button" class="btn btn-default btn-lg" ng-repeat="cluster in clusters | filter:query" class="cluster" 
 				ng-class="{selected : $index == selected}" style="font-size: {{cluster.numPoints < 50 ? cluster.numPoints / 2 : 30}}px" 
 				ng-click="getDocuments(cluster.id, cluster.name, $index)">
 					{{cluster.name}} ({{cluster.numPoints}})
-			</a>
+			</button>
 		</div>
 		
-		<div id="documents" class="col-md-4">
-			<div ng-repeat="document in documents" class="document">		
-				<b>{{document.title}}</b><p>{{document.content}}<p>
+		<div class="col-md-4">
+			<div ng-repeat="document in documents">
+				<h3>{{document.title}}</h3>		
+				<p>{{document.content}}<p>
+				<hr>
 			</div>
 		</div>
 	</div>
