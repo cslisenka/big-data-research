@@ -56,7 +56,7 @@ public class Runner {
     }
 
     private void preProcess() throws ClassNotFoundException, IOException, InterruptedException {
-        configuration.set(StackOverflowPostXMLParserJob.INPUT, "src/main/resources/posts-real.xml");
+        configuration.set(StackOverflowPostXMLParserJob.INPUT, "src/main/resources/posts-small.xml");
         configuration.set(StackOverflowPostXMLParserJob.OUTPUT, outputBasePath.toString());
 
         // Parse posts.xml to sequence file [PostId] [PostWritable(Title, Text)]
@@ -152,7 +152,7 @@ public class Runner {
 				"--numClusters", "250"
         };        
         
-//        ToolRunner.run(configuration, new FuzzyKMeansDriver(), fuzzyKMeansDriver);        
+        ToolRunner.run(configuration, new FuzzyKMeansDriver(), fuzzyKMeansDriver);        
     }
 
     private void postProcess() throws Exception {

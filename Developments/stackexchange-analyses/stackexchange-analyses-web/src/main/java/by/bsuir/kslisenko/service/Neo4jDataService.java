@@ -19,6 +19,10 @@ public class Neo4jDataService {
 	public Node getNode(String indexName, String key, String value) {
 		return graphDb.index().forNodes(indexName).get(key, value).getSingle();
 	}	
+
+	public Node getNode(long id) {
+		return graphDb.getNodeById(id);
+	}
 	
 	public List<Node> getNodes(String indexName, String key, String value) {
 		List<Node> result = new ArrayList<Node>();

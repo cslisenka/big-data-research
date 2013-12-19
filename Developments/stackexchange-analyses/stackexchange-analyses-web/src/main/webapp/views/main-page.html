@@ -1,11 +1,9 @@
-<style>
-.main-page-picture {width: 150px; float: left; margin-right: 15px;}
-</style>
+
 
 <div class="container">
 	<div class="row">
 		<p>
-			This web application shows different visualizations of stackoverflow web-sites. Source data for processing taken <a href="http://www.clearbits.net/creators/146-stack-exchange-data-dump" target="blank">here</a>.
+			This web application shows different visualizations of stackowerflow web-sites. Source data for processing taken <a href="http://www.clearbits.net/creators/146-stack-exchange-data-dump" target="blank">here</a>.
 			For data processing used machine learning clustering algorithms. Calculations done using by Mahout library, Apache Hadoop and data stored in Neo4j graph database. 
 		</p>
 		<p>
@@ -14,26 +12,58 @@
 	</div>
 
 	<div class="row">
-		<h3>Visualizations</h3>
+		<h3>Visualizations photo.stackexchange.com</h3>
 		<hr>
 	</div>
 	
 	<div class="row">
 		<div class="col-md-4">
-			<h2>Search clusters and posts</h2>
+			<h2>Search clusters and posts (photo)</h2>
 			<p>Posts clustered using K-Means algorithm. This demo shows list of clusters (posts groups). You view list of clusters, search them and view posts belongs to each cluster.</p>
-			<p><a class="btn btn-default" href="#/photo/search" role="button">View details &raquo;</a></p>
+			<p><b>Dataset:</b> full photo.stackexchange.com</p>
+			<p><b>Algorithm:</b> K-Means clustering</p>
+			<p><b>Clusters count:</b> constant 250</p>
+			<p><a class="btn btn-default" href="#/search/1387194761016" role="button">View details &raquo;</a></p>
 		</div>
 		<div class="col-md-4">
-			<h2>Posts groups as circles</h2>
+			<h2>Posts groups as circles (photo)</h2>
 			<p>Clusters (post groups) displayed as circles with different size. The cluster size depends of posts count belong to this cluster.</p>
-			<p><a class="btn btn-default" href="#/photo/circles" role="button">View details &raquo;</a></p>
+			<p><b>Dataset:</b> full photo.stackexchange.com</p>
+			<p><b>Algorithm:</b> K-Means clustering</p>
+			<p><b>Clusters count:</b> constant 250</p>
+			<p><a class="btn btn-default" href="#/circles/1387194761016" role="button">View details &raquo;</a></p>
 		</div>
 		<div class="col-md-4">
 			<h2>Multiple posts in group</h2>
 			<p>Example of using Fuzzy K-Means algorithm in mahout. This visualization development is in progress now.</p>
 		</div>
 	</div>
+
+	<div class="row">
+		<h3>Visualizations stackoverflow.com</h3>
+		<hr>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<h2>Search clusters and posts</h2>
+			<p><img src="images/stackoverflow-logo.png" class="main-page-picture">Stackoverflow posts clustered using K-Means algorithm. This demo shows list of clusters (posts groups). You view list of clusters, search them and view posts belongs to each cluster.</p>
+			<p><b>Dataset:</b> small subset of stackoverflow.com</p>
+			<p><b>Algorithm:</b> K-Means clustering</p>
+			<p><b>Clusters count:</b> constant 250</p>			
+			<p><a class="btn btn-default" href="#/search/1387205557155" role="button">View details &raquo;</a></p>
+		</div>
+		<div class="col-md-4">
+			<h2>Posts groups as circles</h2>
+			<p><img src="images/stackoverflow-logo.png" class="main-page-picture">Stackoverflow clusters (post groups) displayed as circles with different size. The cluster size depends of posts count belong to this cluster.<br><br><br></p>
+			<p><b>Dataset:</b> small subset of stackoverflow.com</p>
+			<p><b>Algorithm:</b> K-Means clustering</p>
+			<p><b>Clusters count:</b> constant 250</p>			
+			<p><a class="btn btn-default" href="#/circles/1387205557155" role="button">View details &raquo;</a></p>
+		</div>
+		<div class="col-md-4">
+		</div>
+	</div>	
 	
 	<div class="row">
 		<h3>Tools and technologies used</h3>

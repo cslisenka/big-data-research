@@ -1,4 +1,5 @@
-phonecatApp.controller('MainPage', ['$scope', '$routeParams',
+var mainController = angular.module('main-controller', []);
+mainController.controller('MainPage', ['$scope', '$routeParams',
 	function($scope, $routeParams) {
 	}
 ]);

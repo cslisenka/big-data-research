@@ -12,11 +12,12 @@ import com.opensymphony.xwork2.ActionSupport;
 public class GetClustersJsonAction extends ActionSupport {
 
 	private List<Cluster> clusters = new ArrayList<Cluster>();
+	private String experimentId;
 	
 	public String index() {
 		clusters.clear();
 		ClusterService service = ServiceFactory.getClusterService();
-		clusters.addAll(service.getClusters());
+		clusters.addAll(service.getClusters(experimentId));
 		return "success";
 	}
 
@@ -28,6 +29,14 @@ public class GetClustersJsonAction extends ActionSupport {
 		this.clusters = clusters;
 	}
 	
+	public String getExperimentId() {
+		return experimentId;
+	}
+
+	public void setExperimentId(String experimentId) {
+		this.experimentId = experimentId;
+	}
+
 	public String getJSON() {
 		return index();
 	}

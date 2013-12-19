@@ -1,11 +1,14 @@
-phonecatApp.controller('ClustersCircles', ['$scope', '$routeParams',
+var circlesController = angular.module('circles-controller', []);
+circlesController.controller('ClustersCircles', ['$scope', '$routeParams',
 	function($scope, $routeParams) {
+		var experimentId = $routeParams.experimentId;
+	
 		$("#pleaseWait").modal('show');
-		fillCircles();
+		fillCircles(experimentId);
 	}
 ]);
 
-function fillCircles() {
+function fillCircles(experimentId) {
 	var diameter = 1600, format = d3.format(",d"), color = d3.scale.category20c();
 	var bubble = d3.layout.pack()
 		.sort(null)
@@ -17,7 +20,7 @@ function fillCircles() {
 		.attr("height", diameter)
 	    .attr("class", "bubble");
 	
-	d3.json("json/getClustersJsonAction", function(error, root) {
+	d3.json("json/getClustersJsonAction?experimentId=" + experimentId, function(error, root) {
 	  var node = svg.selectAll(".node")
 	      .data(bubble.nodes(myClasses(root))
 	      .filter(function(d) { return !d.children; }))

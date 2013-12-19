@@ -5,6 +5,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,7 +25,6 @@ import org.neo4j.rest.graphdb.RestGraphDatabase;
 import bbuzz2011.stackoverflow.join.ClusteredDocument;
 import by.bsuir.kslisenko.util.ReaderHandler;
 import by.bsuir.kslisenko.util.SequenceFileReaderUtil;
-import by.bsuir.kslisenko.util.handler.ConsoleReaderHandler;
 
 /**
  * Imports clusters and points to neo4j
@@ -45,6 +45,8 @@ public class Neo4jImporter {
 	
 	private Index<Node> clusterIndex;
 	private Index<Node> pointsIndex;
+	private Index<Node> experimentIndex;
+	private Node experimentNode;
 	
 	private Transaction currentTx;
 	private int itemsInTransaction = 0;
@@ -56,12 +58,34 @@ public class Neo4jImporter {
 		this.pathToPoints = pathToPoints;
 	}
 	
+	public void addExperimentRootNode(String dataset, String algorithmUsed, String otherDescription) {
+		experimentIndex = graphDb.index().forNodes("experiments");
+		currentTx = graphDb.beginTx();
+		
+		experimentNode = graphDb.createNode();
+		long id = System.currentTimeMillis();
+		experimentNode.setProperty("id", id);
+		experimentNode.setProperty("dataset", dataset);
+		experimentNode.setProperty("algorithmUsed", algorithmUsed);
+		experimentNode.setProperty("otherDescription", otherDescription);
+		experimentNode.setProperty("importDate", new Date());
+		experimentIndex.add(experimentNode, "id", id);
+		
+		Node rootNode = graphDb.getNodeById(0);
+		rootNode.createRelationshipTo(experimentNode, RelTypes.EXPERIMENT);
+		
+		currentTx.success();
+		currentTx.finish();
+	}
+	
 	public void doImport() throws IOException {
 		long startTime = System.currentTimeMillis();
 		graphDb = new RestGraphDatabase(serverUri);
 		
 		Configuration conf = new Configuration();
 		dictionary = VectorHelper.loadTermDictionary(conf, pathToDictionary);
+		
+		addExperimentRootNode("stackoverflow.com small", "k-means, fyzzy k-means clustering", "small stackoverflow subset from Frank Sholten demo"); 
 		
 		// Import clusters
 		addClusters(conf);
@@ -176,13 +200,13 @@ public class Neo4jImporter {
 		clusterNode.setProperty("name", name);
 		clusterNode.setProperty("numPoints", numPoints);
 		clusterIndex.add(clusterNode, "id", id);
-		rootNode.createRelationshipTo(clusterNode, RelTypes.CONTAINS);
+		experimentNode.createRelationshipTo(clusterNode, RelTypes.CONTAINS);
 	}
 	
 	public static void main(String[] args) throws IOException {
 		final String BASE = "../stackexchange-analyses-hadoop-mahout/target/stackoverflow-output-base/";
 		Neo4jImporter importer = new Neo4jImporter(SERVER, 
-				BASE + "kmeans/clusters-2-final",
+				BASE + "kmeans/clusters-1-final",
 				BASE + "clusteredPosts",
 				BASE + "sparse/dictionary.file-*");
 		importer.doImport();
@@ -226,6 +250,6 @@ public class Neo4jImporter {
 	}
 	
 	private static enum RelTypes implements RelationshipType {
-	    CONTAINS
+	    CONTAINS, EXPERIMENT
 	}	
 }

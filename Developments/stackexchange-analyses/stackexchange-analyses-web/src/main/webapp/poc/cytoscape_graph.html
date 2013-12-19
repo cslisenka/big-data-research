@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html><!--
+  Created using jsbin.com
+  Source can be edited via http://jsbin.com/aqupun/6/edit
+--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="description" content="[Visual style example]">
+<script src="cytoscape_graph_files/jquery.js"></script>
+<meta charset="utf-8">
+<title>Visual style example</title>
+  <script src="cytoscape_graph_files/cytoscape.js"></script>
+
+<style id="jsbin-css">
+body { 
+  font: 14px helvetica neue, helvetica, arial, sans-serif;
+}
+
+#cy {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+</style>
+<script src="cytoscape_graph_files/ga.js" async="" type="text/javascript"></script><link href="cytoscape_graph_files/edit.css" rel="stylesheet"></head>
+<body>
+  <div id="cy"><canvas height="884" width="1920" data-id="layer0-selectbox" style="position: absolute; z-index: 5; width: 1920px; height: 884px;"></canvas><canvas height="884" width="1920" data-id="layer1" style="position: absolute; z-index: 4; width: 1920px; height: 884px;"></canvas><canvas height="884" width="1920" data-id="layer2-drag" style="position: absolute; z-index: 3; width: 1920px; height: 884px;"></canvas><canvas height="884" width="1920" data-id="layer3-overlay" style="position: absolute; z-index: 2; width: 1920px; height: 884px;"></canvas><canvas height="884" width="1920" data-id="layer4-node" style="position: absolute; z-index: 1; width: 1920px; height: 884px;"></canvas><canvas height="884" width="1920" data-id="buffer0" style="position: absolute; z-index: -1; visibility: hidden;"></canvas><canvas height="884" width="1920" data-id="buffer1" style="position: absolute; z-index: -2; visibility: hidden;"></canvas><div style="position: absolute; z-index: 1000; width: 1920px; height: 884px;"><a target="_blank" href="http://cytoscape.github.io/cytoscape.js/" style="font: 14px helvetica; position: absolute; right: 0px; bottom: 0px; padding: 5px 3px 1px 5px; opacity: 0; background: none repeat scroll 0% 0% red;">cytoscape.js</a></div></div>
+<script>
+$('#cy').cytoscape({
+  layout: {
+    name: 'circle'
+  },
+  
+  style: cytoscape.stylesheet()
+    .selector('node')
+      .css({
+        'shape': 'data(faveShape)',
+        'width': 'mapData(weight, 40, 80, 20, 60)',
+        'content': 'data(name)',
+        'text-valign': 'center',
+        'text-outline-width': 2,
+        'text-outline-color': 'data(faveColor)',
+        'background-color': 'data(faveColor)',
+        'color': '#fff'
+      })
+    .selector(':selected')
+      .css({
+        'border-width': 3,
+        'border-color': '#333'
+      })
+    .selector('edge')
+      .css({
+        'width': 'mapData(strength, 70, 100, 2, 6)',
+        'target-arrow-shape': 'triangle',
+        'source-arrow-shape': 'circle',
+        'line-color': 'data(faveColor)',
+        'source-arrow-color': 'data(faveColor)',
+        'target-arrow-color': 'data(faveColor)'
+      })
+    .selector('edge.questionable')
+      .css({
+        'line-style': 'dotted',
+        'target-arrow-shape': 'diamond'
+      })
+    .selector('.faded')
+      .css({
+        'opacity': 0.25,
+        'text-opacity': 0
+      }),
+  
+  elements: {
+    nodes: [
+      { data: { id: '1', name: 'Jerry', weight: 65, faveColor: '#6FB1FC', faveShape: 'triangle' } },
+      { data: { id: '2', name: 'Elaine', weight: 45, faveColor: '#EDA1ED', faveShape: 'ellipse' } },
+      { data: { id: '3', name: 'Kramer', weight: 75, faveColor: '#86B342', faveShape: 'octagon' } },
+      { data: { id: '4', name: 'George', weight: 70, faveColor: '#F5A45D', faveShape: 'rectangle' } },
+      { data: { id: '5', name: 'Jerry', weight: 65, faveColor: '#6FB1FC', faveShape: 'triangle' } },
+      { data: { id: '6', name: 'Elaine', weight: 45, faveColor: '#EDA1ED', faveShape: 'ellipse' } },
+      { data: { id: '7', name: 'Kramer', weight: 75, faveColor: '#86B342', faveShape: 'octagon' } },
+      { data: { id: '8', name: 'George', weight: 70, faveColor: '#F5A45D', faveShape: 'rectangle' } },
+      { data: { id: '9', name: 'Jerry', weight: 65, faveColor: '#6FB1FC', faveShape: 'triangle' } },
+      { data: { id: '10', name: 'Elaine', weight: 45, faveColor: '#EDA1ED', faveShape: 'ellipse' } },
+      { data: { id: '11', name: 'Kramer', weight: 75, faveColor: '#86B342', faveShape: 'octagon' } },
+      { data: { id: '12', name: 'George', weight: 70, faveColor: '#F5A45D', faveShape: 'rectangle' } },
+      { data: { id: '13', name: 'Jerry', weight: 65, faveColor: '#6FB1FC', faveShape: 'triangle' } },
+      { data: { id: '14', name: 'Elaine', weight: 45, faveColor: '#EDA1ED', faveShape: 'ellipse' } },
+      { data: { id: '15', name: 'Kramer', weight: 75, faveColor: '#86B342', faveShape: 'octagon' } },
+      { data: { id: '16', name: 'George', weight: 70, faveColor: '#F5A45D', faveShape: 'rectangle' } },
+      { data: { id: '17', name: 'Jerry', weight: 65, faveColor: '#6FB1FC', faveShape: 'triangle' } },
+      { data: { id: '18', name: 'Elaine', weight: 45, faveColor: '#EDA1ED', faveShape: 'ellipse' } },
+      { data: { id: '19', name: 'Kramer', weight: 75, faveColor: '#86B342', faveShape: 'octagon' } },
+      { data: { id: '20', name: 'George', weight: 70, faveColor: '#F5A45D', faveShape: 'rectangle' } },
+      { data: { id: '21', name: 'Jerry', weight: 65, faveColor: '#6FB1FC', faveShape: 'triangle' } },
+      { data: { id: '22', name: 'Elaine', weight: 45, faveColor: '#EDA1ED', faveShape: 'ellipse' } },
+      { data: { id: '23', name: 'Kramer', weight: 75, faveColor: '#86B342', faveShape: 'octagon' } },
+      { data: { id: '24', name: 'George', weight: 70, faveColor: '#F5A45D', faveShape: 'rectangle' } },
+      { data: { id: '25', name: 'Jerry', weight: 65, faveColor: '#6FB1FC', faveShape: 'triangle' } },
+      { data: { id: '26', name: 'Elaine', weight: 45, faveColor: '#EDA1ED', faveShape: 'ellipse' } },
+      { data: { id: '27', name: 'Kramer', weight: 75, faveColor: '#86B342', faveShape: 'octagon' } },
+      { data: { id: '28', name: 'George', weight: 70, faveColor: '#F5A45D', faveShape: 'rectangle' } }            
+    ],
+    edges: [
+      { data: { source: '1', target: '2', faveColor: '#6FB1FC', strength: 90 } },
+      { data: { source: '2', target: '3', faveColor: '#6FB1FC', strength: 70 } },
+      { data: { source: '3', target: '4', faveColor: '#6FB1FC', strength: 80 } },
+      { data: { source: '4', target: '5', faveColor: '#EDA1ED', strength: 95 } },
+      { data: { source: '5', target: '6', faveColor: '#EDA1ED', strength: 60 }, classes: 'questionable' },
+      { data: { source: '6', target: '7', faveColor: '#86B342', strength: 100 } },
+      { data: { source: '7', target: '8', faveColor: '#86B342', strength: 100 } },
+      { data: { source: '8', target: '9', faveColor: '#86B342', strength: 100 } },
+      { data: { source: '9', target: '10', faveColor: '#F5A45D', strength: 90 } },
+      { data: { source: '10', target: '11', faveColor: '#F5A45D', strength: 90 } },
+      { data: { source: '11', target: '12', faveColor: '#F5A45D', strength: 90 } },
+      { data: { source: '12', target: '13', faveColor: '#F5A45D', strength: 90 } },
+      { data: { source: '13', target: '14', faveColor: '#F5A45D', strength: 90 } },
+      { data: { source: '14', target: '15', faveColor: '#F5A45D', strength: 90 } },
+      { data: { source: '15', target: '16', faveColor: '#F5A45D', strength: 90 } },
+      { data: { source: '16', target: '17', faveColor: '#F5A45D', strength: 90 } },
+      { data: { source: '17', target: '18', faveColor: '#F5A45D', strength: 90 } },
+      { data: { source: '18', target: '19', faveColor: '#F5A45D', strength: 90 } },
+      { data: { source: '19', target: '20', faveColor: '#F5A45D', strength: 90 } },
+      { data: { source: '20', target: '21', faveColor: '#F5A45D', strength: 90 } },
+      { data: { source: '21', target: '22', faveColor: '#F5A45D', strength: 90 } },
+      { data: { source: '22', target: '23', faveColor: '#F5A45D', strength: 90 } },
+      { data: { source: '23', target: '24', faveColor: '#F5A45D', strength: 90 } },
+      { data: { source: '24', target: '25', faveColor: '#F5A45D', strength: 90 } },
+      { data: { source: '25', target: '26', faveColor: '#F5A45D', strength: 90 } },
+      { data: { source: '26', target: '27', faveColor: '#F5A45D', strength: 90 } },
+      { data: { source: '27', target: '28', faveColor: '#F5A45D', strength: 90 } }
+    ]
+  },
+  
+  ready: function(){
+    window.cy = this;
+    
+    // giddy up
+  }
+});
+</script>
+<script src="cytoscape_graph_files/edit.js"></script>
+<script>jsbinShowEdit({"root":"http://static.jsbin.com","csrf":"eCyuBj8O0BFt40oy+4JtKpua"});</script>
+<script src="cytoscape_graph_files/eventsource.js"></script>
+<script src="cytoscape_graph_files/spike.js"></script>
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-1656750-34']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+})();
+</script>
+
+<a style="top: 0px;" href="http://jsbin.com/aqupun/6/edit" id="edit-with-js-bin">Edit in JS Bin <img src="cytoscape_graph_files/favicon.png"></a></body></html>
