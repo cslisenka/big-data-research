@@ -37,6 +37,8 @@ $('#cy').cytoscape({
       .css({
         'shape': 'data(faveShape)',
         'width': 'mapData(weight, 40, 80, 20, 60)',
+        'height': 'mapData(weight, 40, 80, 20, 60)',
+        'font-size' : 'mapData(weight, 40, 180, 15, 40)',
         'content': 'data(name)',
         'text-valign': 'center',
         'text-outline-width': 2,
@@ -71,10 +73,10 @@ $('#cy').cytoscape({
   
   elements: {
     nodes: [
-      { data: { id: '1', name: 'Jerry', weight: 65, faveColor: '#6FB1FC', faveShape: 'triangle' } },
-      { data: { id: '2', name: 'Elaine', weight: 45, faveColor: '#EDA1ED', faveShape: 'ellipse' } },
-      { data: { id: '3', name: 'Kramer', weight: 75, faveColor: '#86B342', faveShape: 'octagon' } },
-      { data: { id: '4', name: 'George', weight: 70, faveColor: '#F5A45D', faveShape: 'rectangle' } },
+      { data: { id: '1', name: 'Jerry', weight: 165, faveColor: '#6FB1FC', faveShape: 'triangle' } },
+      { data: { id: '2', name: 'Elaine', weight: 345, faveColor: '#EDA1ED', faveShape: 'ellipse' } },
+      { data: { id: '3', name: 'Kramer', weight: 375, faveColor: '#86B342', faveShape: 'octagon' } },
+      { data: { id: '4', name: 'George', weight: 570, faveColor: '#F5A45D', faveShape: 'rectangle' } },
       { data: { id: '5', name: 'Jerry', weight: 65, faveColor: '#6FB1FC', faveShape: 'triangle' } },
       { data: { id: '6', name: 'Elaine', weight: 45, faveColor: '#EDA1ED', faveShape: 'ellipse' } },
       { data: { id: '7', name: 'Kramer', weight: 75, faveColor: '#86B342', faveShape: 'octagon' } },
@@ -137,6 +139,10 @@ $('#cy').cytoscape({
     // giddy up
   }
 });
+
+$('#cy').on('cxttapstart', function(evt){
+	alert(evt);
+});
 </script>
 <script src="cytoscape_graph_files/edit.js"></script>
 <script>jsbinShowEdit({"root":"http://static.jsbin.com","csrf":"eCyuBj8O0BFt40oy+4JtKpua"});</script>
@@ -153,5 +159,7 @@ _gaq.push(['_trackPageview']);
   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
 })();
 </script>
+
+<div>Cluster name: </div>
 
 <a style="top: 0px;" href="http://jsbin.com/aqupun/6/edit" id="edit-with-js-bin">Edit in JS Bin <img src="cytoscape_graph_files/favicon.png"></a></body></html>

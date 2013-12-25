@@ -11,17 +11,17 @@
 	<packaging>jar</packaging>
 
 	<properties>
-		<lucene.version>3.3.0</lucene.version>
-		<mahout.version>0.6</mahout.version>
+		<lucene.version>4.3.0</lucene.version>
+		<mahout.version>0.8</mahout.version>
 		<whirr.version>0.7.1</whirr.version>
 	</properties>
 
 	<dependencies>
-		<dependency>
+		<!-- dependency>
 			<groupId>org.apache.solr</groupId>
 			<artifactId>solr-core</artifactId>
 			<version>${lucene.version}</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.apache.mahout</groupId>

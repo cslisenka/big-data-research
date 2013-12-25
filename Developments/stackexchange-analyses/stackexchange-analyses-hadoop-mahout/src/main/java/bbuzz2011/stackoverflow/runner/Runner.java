@@ -48,7 +48,8 @@ public class Runner {
         preProcess();
         vectorize();
         cluster();
-        postProcess();
+        postProcess(new Path(outputBasePath, "kmeans"), "kmeans");
+        postProcess(new Path(outputBasePath, "fuzzy-kmeans"), "fuzzy-kmeans");
     }
 
     private void cleanOutputBasePath() throws IOException {
@@ -108,9 +109,8 @@ public class Runner {
                 // Max iterations number
                 "--maxIter", "10",
                 // Make 250 initial clusters
-                "--numClusters", "250",
+                "--numClusters", "60",
                 "--distanceMeasure", CosineDistanceMeasure.class.getName(),
-                // TODO may be run input vector clustering after computing Canopies?
                 "--clustering",
                 "--method", "sequential",
                 "--overwrite"
@@ -118,19 +118,18 @@ public class Runner {
 
         ToolRunner.run(configuration, new KMeansDriver(), kmeansDriver);
 
-//        Path outputCanopy = new Path(outputBasePath, "canopy");        
-//        
-//        // TODO where are initial clusters generated?
-//        String[] canopyDriver = {
-//                "--input", outputVectorPath.toString(),
-//                "--output", outputCanopy.toString(),
-//                "--distanceMeasure", CosineDistanceMeasure.class.getName(),
-//                "--t1", "1500",
-//                "--t2", "2500",
+        Path outputCanopy = new Path(outputBasePath, "canopy");        
+        
+        String[] canopyDriver = {
+                "--input", outputVectorPath.toString(),
+                "--output", outputCanopy.toString(),
+                "--distanceMeasure", CosineDistanceMeasure.class.getName(),
+                "--t1", "1500",
+                "--t2", "2500"//,
 //                "--clusterFilter", "0"
-//        };        
-//        
-//        ToolRunner.run(configuration, new CanopyDriver(), canopyDriver);
+        };        
+        
+        ToolRunner.run(configuration, new CanopyDriver(), canopyDriver);
         
         Path outputFuzzyKMeans = new Path(outputBasePath, "fuzzy-kmeans");        
         
@@ -139,8 +138,9 @@ public class Runner {
                 "--input", outputVectorPath.toString(),
                 "--output", outputFuzzyKMeans.toString(),
                 "--distanceMeasure", CosineDistanceMeasure.class.getName(),
+                "--convergenceDelta", "1.0",
                 // Fuzziest
-                "--m", "3",
+                "--m", "1.2",
 				// Max iterations number
 				"--maxIter", "10",
 				//"-e", "false",
@@ -149,19 +149,18 @@ public class Runner {
 				"--clusters", "target/stackoverflow-fuzzy-kmeans-initial-clusters",
 				"--overwrite",
 				"--clustering",
-				"--numClusters", "250"
+				"--numClusters", "60"
         };        
         
         ToolRunner.run(configuration, new FuzzyKMeansDriver(), fuzzyKMeansDriver);        
     }
 
-    private void postProcess() throws Exception {
-        Path outputClusteringPath = new Path(outputBasePath, "kmeans");
+    private void postProcess(Path outputClusteringPath, String algorithmId) throws Exception {
         Path clusteredPointsPath = new Path(outputClusteringPath, "clusteredPoints");
         Path outputFinalClustersPath = new Path(outputClusteringPath, "clusters-*-final/*");
-        Path pointsToClusterPath = new Path(outputBasePath, "pointsToClusters");
+        Path pointsToClusterPath = new Path(outputBasePath, "pointsToClusters_" + algorithmId);
         // TODO I detected bug here. In original source Path clusteredPostsPath = new Path(outputBasePath, "clusteredPosts"); 
-        Path clusteredPostsPath = new Path(outputBasePath, "clusteredPosts");
+        Path clusteredPostsPath = new Path(outputBasePath, "clusteredPosts_" + algorithmId);
 
         PointToClusterMappingJob pointsToClusterMappingJob = new PointToClusterMappingJob(clusteredPointsPath, pointsToClusterPath);
         pointsToClusterMappingJob.setConf(configuration);

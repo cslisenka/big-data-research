@@ -1,5 +1,7 @@
 package bbuzz2011.stackoverflow.preprocess.xml;
 
+import java.io.IOException;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
@@ -8,9 +10,7 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
-import org.apache.mahout.classifier.bayes.XmlInputFormat;
-
-import java.io.IOException;
+import org.apache.mahout.text.wikipedia.XmlInputFormat;
 
 /**
  * Takes stackexchange posts.xml file, then extracts title and content.

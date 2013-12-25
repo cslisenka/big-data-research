@@ -1,12 +1,12 @@
 package bbuzz2011.stackoverflow.join;
 
+import java.io.IOException;
+
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.mapreduce.Mapper;
-import org.apache.mahout.clustering.WeightedVectorWritable;
+import org.apache.mahout.clustering.classify.WeightedVectorWritable;
 import org.apache.mahout.math.NamedVector;
-
-import java.io.IOException;
 
 /**
  * Maps the name of a point (text document) to the id of the cluster, sorted by point name in

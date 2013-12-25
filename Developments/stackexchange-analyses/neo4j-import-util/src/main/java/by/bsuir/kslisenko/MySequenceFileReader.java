@@ -4,14 +4,17 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.mahout.clustering.WeightedVectorWritable;
-import org.apache.mahout.clustering.canopy.Canopy;
-import org.apache.mahout.clustering.kmeans.Cluster;
+import org.apache.mahout.clustering.Cluster;
+import org.apache.mahout.clustering.classify.WeightedVectorWritable;
+import org.apache.mahout.clustering.iterator.ClusterWritable;
 import org.apache.mahout.math.Vector;
 import org.apache.mahout.math.Vector.Element;
 import org.apache.mahout.math.VectorWritable;
@@ -120,24 +123,70 @@ public class MySequenceFileReader {
 		// Points represent text documents
 		readClusteredPoints(conf, BASE + "kmeans/clusteredPoints");
 		
-//		// 3.3 Final clusters
-//		// Same output structure after initial clusters
-//		readFinalClusters(conf, BASE + "kmeans/clusters-2-final");
-//		
-//		// 3.4 Read canopy clusters
-//		readCanopyClusters(BASE + "canopy/clusters-0-final", conf);
+		// 3.3 Final clusters
+		// Same output structure after initial clusters
+		readFinalClusters(conf, BASE + "kmeans/clusters-2-final");
+		
+		// 3.4 Read canopy clusters
+		readCanopyClusters(BASE + "canopy/clusters-0-final", conf);
 
 		// 3.5 Read fuzzy k-means clistering
 		readClusters(BASE + "fuzzy-kmeans/clusters-1-final", conf);
+		readClusters(BASE + "kmeans/clusters-1-final", conf);
 		
-//		// 4. Post process data
-//		// 4.1 Read points to clusters mapping (information taked from clisters and points files)
-//		// PointToClusterMappingJob
-//		readPointsToClustersMapping(conf, BASE + "pointsToClusters");
+		// 4. Post process data
+		// 4.1 Read points to clusters mapping (information taken from clusters and points files)
+		// PointToClusterMappingJob
+		readPointsToClustersMapping(conf, BASE + "pointsToClusters_kmeans");
+		readPointsToClustersMapping(conf, BASE + "pointsToClusters_fuzzy-kmeans");
+		
+		// 4.2 Read clustered posts file
+		// ClusterJoinerJob
+		readClusteredPosts(conf, BASE + "clusteredPosts_kmeans");
+		readClusteredPosts(conf, BASE + "clusteredPosts_fuzzy-kmeans");
+		
+		// Read inter-cluster distance
+		
+//		conf.set(RepresentativePointsDriver.DISTANCE_MEASURE_KEY, CosineDistanceMeasure.class.getName());
+//		ClusterEvaluator evaluator = new ClusterEvaluator(conf, new Path(BASE + "kmeans/clusters-1-final"));
 //		
-//		// 4.2 Read clustered posts file
-//		// ClusterJoinerJob
-//		readClusteredPosts(conf, BASE + "clusteredPosts");
+//		Map<Integer, Vector> dist = evaluator.interClusterDistances();
+//		for (Integer key : dist.keySet()) {
+//			System.out.println(key + ":" + dist.get(key));
+//		}
+		
+//		ClusterDumper clusterDumper = new ClusterDumper(new Path(output, "clusters-*-final"), new Path(output,
+//                "clusteredPoints"));
+		
+		// Evaluate distances between clusters
+		countClusterDistances(conf, BASE + "kmeans/clusters-1-final");
+	}
+
+	private static void countClusterDistances(Configuration conf, String path) throws IOException {
+		final List<Cluster> clusters = new ArrayList<Cluster>();
+		
+		ReaderHandler<IntWritable, ClusterWritable> handler = new ReaderHandler<IntWritable, ClusterWritable>() {
+			@Override
+			public void before() throws IOException {}
+
+			@Override
+			public void read(IntWritable key, ClusterWritable value, PrintStream out) throws IOException {
+				clusters.add(value.getValue());
+			}
+
+			@Override
+			public void after() throws IOException {}
+		};
+		SequenceFileReaderUtil.readPartFilesInDir(path, TEXT_FILE_MAX_ROWS, conf, handler);
+		
+		
+		for (Cluster c : clusters) {
+			for (Cluster c2 : clusters) {
+				double distance = VectorDistanceUtil.getCosineDistance(c.getCenter(), c2.getCenter());
+				System.out.println("Cluster " + c.getId() + " <-> " + c2.getId() + " = " + distance);
+			}
+		}
+		System.out.println("");
 	}
 
 	private static void readClusteredPosts(Configuration conf, String path) throws IOException {
@@ -169,6 +218,22 @@ public class MySequenceFileReader {
 
 	private static void readPointsToClustersMapping(Configuration conf, String path) throws IOException {
 		SequenceFileReaderUtil.readPartFilesInDirToConsole(path, 20, conf);
+		
+		ReaderHandler<LongWritable, IntWritable> handler = new ReaderHandler<LongWritable, IntWritable>() {
+			@Override
+			public void before() throws IOException {}
+
+			@Override
+			public void read(LongWritable pointId, IntWritable clusterId, PrintStream out) throws IOException {
+				out.println("pointId: " + pointId.toString() + " clusterId: " + clusterId);
+			}
+
+			@Override
+			public void after() throws IOException {}
+		};
+		
+		// Write to text file
+		SequenceFileReaderUtil.readPartFilesInDir(path, TEXT_FILE_MAX_ROWS, conf, new TextFileOutputReaderHandler<LongWritable, IntWritable>(path + "/pointsToClusters.txt", handler));
 	}
 
 	private static void readFinalClusters(Configuration conf, String path) throws IOException {
@@ -189,17 +254,17 @@ public class MySequenceFileReader {
 	}
 
 	private static void readClusters(String path, Configuration conf) throws IOException {
-		ReaderHandler<Text, Cluster> handler = new ReaderHandler<Text, Cluster>() {
+		ReaderHandler<IntWritable, ClusterWritable> handler = new ReaderHandler<IntWritable, ClusterWritable>() {
 			@Override
 			public void before() throws IOException {
 			}
 
 			@Override
-			public void read(Text key, Cluster value, PrintStream out) throws IOException {
+			public void read(IntWritable key, ClusterWritable value, PrintStream out) throws IOException {
 				out.println("Cluster id: " + key);
-				out.println("Num points: " + value.getNumPoints());
-				out.println("Count: " + value.count());
-				out.println("Centroid: " + printVectorWithDictionary(value.computeCentroid()));
+				out.println("Num objervations: " + value.getValue().getNumObservations());
+				out.println("Total observations: " + value.getValue().getTotalObservations());
+				out.println("Centroid: " + printVectorWithDictionary(value.getValue().getCenter()));
 				out.println("");
 			}
 
@@ -207,24 +272,24 @@ public class MySequenceFileReader {
 			public void after() throws IOException {
 			}
 		};
-		SequenceFileReaderUtil.readPartFilesInDir(path, 10, conf, new ConsoleReaderHandler<Text, Cluster>(handler));
+		SequenceFileReaderUtil.readPartFilesInDir(path, 10, conf, new ConsoleReaderHandler<IntWritable, ClusterWritable>(handler));
 		
-		SequenceFileReaderUtil.readPartFilesInDir(path, TEXT_FILE_MAX_ROWS, conf, new TextFileOutputReaderHandler<Text, Cluster>(path + ".txt", handler));
+		SequenceFileReaderUtil.readPartFilesInDir(path, TEXT_FILE_MAX_ROWS, conf, new TextFileOutputReaderHandler<IntWritable, ClusterWritable>(path + ".txt", handler));
 	}
 	
 	// TODO remove code duplication with kmeaks cluster reading
 	private static void readCanopyClusters(String path, Configuration conf) throws IOException {
-		ReaderHandler<Text, Canopy> handler = new ReaderHandler<Text, Canopy>() {
+		ReaderHandler<Text, ClusterWritable> handler = new ReaderHandler<Text, ClusterWritable>() {
 			@Override
 			public void before() throws IOException {
 			}
 
 			@Override
-			public void read(Text key, Canopy value, PrintStream out) throws IOException {
+			public void read(Text key, ClusterWritable value, PrintStream out) throws IOException {
 				out.println("Cluster id: " + key);
-				out.println("Num points: " + value.getNumPoints());
-				out.println("Count: " + value.count());
-				out.println("Centroid: " + printVectorWithDictionary(value.computeCentroid()));
+				out.println("Num objervations: " + value.getValue().getNumObservations());
+				out.println("Total observations: " + value.getValue().getTotalObservations());
+				out.println("Centroid: " + printVectorWithDictionary(value.getValue().getCenter()));
 				out.println("");
 			}
 
@@ -232,9 +297,9 @@ public class MySequenceFileReader {
 			public void after() throws IOException {
 			}
 		};
-		SequenceFileReaderUtil.readPartFilesInDir(path, 10, conf, new ConsoleReaderHandler<Text, Canopy>(handler));
+		SequenceFileReaderUtil.readPartFilesInDir(path, 10, conf, new ConsoleReaderHandler<Text, ClusterWritable>(handler));
 		
-		SequenceFileReaderUtil.readPartFilesInDir(path, TEXT_FILE_MAX_ROWS, conf, new TextFileOutputReaderHandler<Text, Canopy>(path + ".txt", handler));
+		SequenceFileReaderUtil.readPartFilesInDir(path, TEXT_FILE_MAX_ROWS, conf, new TextFileOutputReaderHandler<Text, ClusterWritable>(path + ".txt", handler));
 	}	
 
 	private static void readNGrams(Configuration conf, String path) throws IOException {
@@ -306,7 +371,7 @@ public class MySequenceFileReader {
 	
 	public static String printVectorWithDictionary(Vector vector) {
 		StringBuilder result = new StringBuilder();
-		for (Element element: vector) {
+		for (Element element: vector.all()) {
 			if (element.get() > 0) {
 				result.append(dictionary[element.index()] + "[" + element.index() + "]:" + element.get() + ",");
 			}

@@ -10,7 +10,7 @@
 		<jackson.version>2.1.4</jackson.version>
 		<hadoop.version>0.20.203.0</hadoop.version>
 		<neo4j.version>1.9.3</neo4j.version>
-		<mahout.version>0.6</mahout.version>
+		<mahout.version>0.8</mahout.version>
 	</properties>
 
 	<modules>

@@ -6,13 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.mahout.clustering.kmeans.Cluster;
+import org.apache.mahout.clustering.iterator.ClusterWritable;
 import org.apache.mahout.math.Vector;
 import org.apache.mahout.utils.vectors.VectorHelper;
 import org.neo4j.graphdb.GraphDatabaseService;
@@ -32,8 +31,8 @@ import by.bsuir.kslisenko.util.SequenceFileReaderUtil;
  */
 public class Neo4jImporter {
 
-	private static final String SERVER = "http://50.16.193.54:7474/db/data";
-//	private static final String SERVER = "http://localhost:7474/db/data";
+//	private static final String SERVER = "http://50.16.193.54:7474/db/data";
+	private static final String SERVER = "http://localhost:7474/db/data";
 	private static final int BATCH_SIZE = 25000; // Objects imported per transaction
 	private GraphDatabaseService graphDb;
 	private String serverUri;
@@ -78,14 +77,14 @@ public class Neo4jImporter {
 		currentTx.finish();
 	}
 	
-	public void doImport() throws IOException {
+	public void doImport(String dataset, String algorithmUsed, String otherDescription) throws IOException {
 		long startTime = System.currentTimeMillis();
 		graphDb = new RestGraphDatabase(serverUri);
 		
 		Configuration conf = new Configuration();
 		dictionary = VectorHelper.loadTermDictionary(conf, pathToDictionary);
 		
-		addExperimentRootNode("stackoverflow.com small", "k-means, fyzzy k-means clustering", "small stackoverflow subset from Frank Sholten demo"); 
+		addExperimentRootNode(dataset, algorithmUsed, otherDescription); 
 		
 		// Import clusters
 		addClusters(conf);
@@ -161,16 +160,16 @@ public class Neo4jImporter {
 			tx.finish();
 		}
 		
-		ReaderHandler<Text, Cluster> handler = new ReaderHandler<Text, Cluster>() {
+		ReaderHandler<IntWritable, ClusterWritable> handler = new ReaderHandler<IntWritable, ClusterWritable>() {
 			@Override
 			public void before() throws IOException {
 				currentTx = graphDb.beginTx();
 			}
 
 			@Override
-			public void read(Text key, Cluster value, PrintStream out) throws IOException {
+			public void read(IntWritable key, ClusterWritable value, PrintStream out) throws IOException {
 				String name = getClusterName(value, dictionary);
-				addCluster(value.getId() + "", name, value.getNumPoints(), rootNode);
+				addCluster(value.getValue().getId() + "", name, value.getValue().getNumObservations(), rootNode);
 				itemsInTransaction++;
 				if (itemsInTransaction >= BATCH_SIZE) {
 					// Finish previous transaction and start new
@@ -207,9 +206,15 @@ public class Neo4jImporter {
 		final String BASE = "../stackexchange-analyses-hadoop-mahout/target/stackoverflow-output-base/";
 		Neo4jImporter importer = new Neo4jImporter(SERVER, 
 				BASE + "kmeans/clusters-1-final",
-				BASE + "clusteredPosts",
+				BASE + "clusteredPosts_kmeans",
 				BASE + "sparse/dictionary.file-*");
-		importer.doImport();
+		importer.doImport("stackoverflow.com small", "k-means clustering (30 clusters), mahout 0.8", "small stackoverflow subset from Frank Sholten demo");
+		
+		importer = new Neo4jImporter(SERVER, 
+				BASE + "fuzzy-kmeans/clusters-1-final",
+				BASE + "clusteredPosts_fuzzy-kmeans",
+				BASE + "sparse/dictionary.file-*");
+		importer.doImport("stackoverflow.com small", "fyzzy k-means clustering (30 clusters), mahout 0.8", "small stackoverflow subset from Frank Sholten demo");		
 	}
 	
 	private static class TermIndexWeight {
@@ -222,12 +227,10 @@ public class Neo4jImporter {
 		}
 	}
 	
-	protected String getClusterName(Cluster cluster, String[] dictionary) {
+	protected String getClusterName(ClusterWritable cluster, String[] dictionary) {
 		List<TermIndexWeight> vectorTerms = new ArrayList<TermIndexWeight>();
 
-		Iterator<Vector.Element> iter = cluster.getCenter().iterateNonZero();
-		while (iter.hasNext()) {
-			Vector.Element elt = iter.next();
+		for (Vector.Element elt : cluster.getValue().getCenter().all()) {
 			vectorTerms.add(new TermIndexWeight(elt.index(), elt.get()));
 		}
 
