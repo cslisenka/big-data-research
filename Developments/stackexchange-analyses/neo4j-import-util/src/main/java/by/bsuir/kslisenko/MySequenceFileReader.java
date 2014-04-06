@@ -59,91 +59,91 @@ public class MySequenceFileReader {
 		// 1.1 StackOverflowPostXMLParserJob
 		// posts.xml -> sequence file [PostId] [PostWritable(Title Text)]
 		// This data needed after clustering job finish for indexing. We will join posts with cluster IDs.
-		readProcessedPostsToPostWritable(conf, BASE + "posts");
-		
-		// 1.2 StackOverflowPostTextExtracterJob 
-		// sequence file [PostId] [PostWritable(Title Text)] -> sequence file [PostId] [Title+Text]
-		// Source data for vectorizing and clustering
-		readProcessedPosts(conf, BASE + "posts-text");
-		
-		// 2. Vectorize data
-
-		// 2.1 Read tokenized documents
-		// For document 
-		// document ["What is the best way to micro-adjust a lens? I have a Canon 7D with a 50mm f/1.4 lens, and I think the auto-focus of the lens is off. How can I test and adjust this reliably?"]
-		// Result would be [micro, adjust, lens, canon, lens, think, auto, focus, lens, test, adjust, reliably, will, approach, work, lenses, different, camera, body, other, different, options]
-		// using org.apache.mahout.vectorizer.SparseVectorsFromSequenceFiles
-		readTokenizedDocuments(conf, BASE + "sparse/tokenized-documents");
-		
-		// 2.2 Output generated dictionary from tokenized documents
-		// Dictionary contains all words in all documents and their IDs
-		// abandoned	0
-		// abberation	1
-		// abbreviations	2
-		// aberration	3
-		// aberrations	4
-		dictionary = readDictionary(conf, BASE + "sparse/dictionary.file-0");
-		
-
-		// 2.3 Output frequency file
-		// TODO what does this files represent?
-		// TODO at which stage does this file created?
-		readFrequencyFile(conf, BASE + "sparse/frequency.file-0");
-		readDfCount(conf, BASE + "sparse/df-count");		
-		
-		// 2.4 Output generated vectors
-		// Each vector represent document
-		// TF vector [action:1.0,advantages:2.0,after:1.0,among:1.0...]
-		// IDF vector [emphasis:0.17316427777013857,fatigue:0.2023817443352598,greg:0.19089462250730813...]
-		readTfVectors(conf, BASE + "sparse/tf-vectors");
-		readTfIdfVectors(conf, BASE + "sparse/tfidf-vectors");
-		
-		// 2.5 Read ngrams - words or couples of words with their frequency
-		// abandoned	2.0
-		// abberation	2.0
-		// abbreviations	2.0
-		// aberration	53.0
-		// aberrations	11.0
-		readNGrams(conf, BASE + "sparse/wordcount/ngrams");
-		
-		// 2.6 Read subgrams - relations between ngrams
-		// gram: aberration correction [frq=3, type=n]	 has gram: aberration [frq=53, type=h]
-		readSubgrams(conf, BASE + "sparse/wordcount/subgrams");
-		
-		// 3. Cluster data		
-		// using org.apache.mahout.clustering.kmeans.KMeansDriver
-		
-		// Clustering
-		// 3.1 Read initial clusters
-		// Randomly selected initial clusters. Each cluster has a centroid with common terms.
-		// [customised:0.2927406505146588,fields:0.23116300838484566,opensource:0.27911637996861227...]
-		readInitialClusters(conf, "target/stackoverflow-kmeans-initial-clusters");
-		
-		// 3.2 Read clustered points
-		// Points represent text documents
-		readClusteredPoints(conf, BASE + "kmeans/clusteredPoints");
-		
-		// 3.3 Final clusters
-		// Same output structure after initial clusters
-		readFinalClusters(conf, BASE + "kmeans/clusters-2-final");
-		
-		// 3.4 Read canopy clusters
-		readCanopyClusters(BASE + "canopy/clusters-0-final", conf);
-
-		// 3.5 Read fuzzy k-means clistering
-		readClusters(BASE + "fuzzy-kmeans/clusters-1-final", conf);
-		readClusters(BASE + "kmeans/clusters-1-final", conf);
-		
-		// 4. Post process data
-		// 4.1 Read points to clusters mapping (information taken from clusters and points files)
-		// PointToClusterMappingJob
-		readPointsToClustersMapping(conf, BASE + "pointsToClusters_kmeans");
-		readPointsToClustersMapping(conf, BASE + "pointsToClusters_fuzzy-kmeans");
+//		readProcessedPostsToPostWritable(conf, BASE + "posts");
+//		
+//		// 1.2 StackOverflowPostTextExtracterJob 
+//		// sequence file [PostId] [PostWritable(Title Text)] -> sequence file [PostId] [Title+Text]
+//		// Source data for vectorizing and clustering
+//		readProcessedPosts(conf, BASE + "posts-text");
+//		
+//		// 2. Vectorize data
+//
+//		// 2.1 Read tokenized documents
+//		// For document 
+//		// document ["What is the best way to micro-adjust a lens? I have a Canon 7D with a 50mm f/1.4 lens, and I think the auto-focus of the lens is off. How can I test and adjust this reliably?"]
+//		// Result would be [micro, adjust, lens, canon, lens, think, auto, focus, lens, test, adjust, reliably, will, approach, work, lenses, different, camera, body, other, different, options]
+//		// using org.apache.mahout.vectorizer.SparseVectorsFromSequenceFiles
+//		readTokenizedDocuments(conf, BASE + "sparse/tokenized-documents");
+//		
+//		// 2.2 Output generated dictionary from tokenized documents
+//		// Dictionary contains all words in all documents and their IDs
+//		// abandoned	0
+//		// abberation	1
+//		// abbreviations	2
+//		// aberration	3
+//		// aberrations	4
+//		dictionary = readDictionary(conf, BASE + "sparse/dictionary.file-0");
+//		
+//
+//		// 2.3 Output frequency file
+//		// TODO what does this files represent?
+//		// TODO at which stage does this file created?
+//		readFrequencyFile(conf, BASE + "sparse/frequency.file-0");
+//		readDfCount(conf, BASE + "sparse/df-count");		
+//		
+//		// 2.4 Output generated vectors
+//		// Each vector represent document
+//		// TF vector [action:1.0,advantages:2.0,after:1.0,among:1.0...]
+//		// IDF vector [emphasis:0.17316427777013857,fatigue:0.2023817443352598,greg:0.19089462250730813...]
+//		readTfVectors(conf, BASE + "sparse/tf-vectors");
+//		readTfIdfVectors(conf, BASE + "sparse/tfidf-vectors");
+//		
+//		// 2.5 Read ngrams - words or couples of words with their frequency
+//		// abandoned	2.0
+//		// abberation	2.0
+//		// abbreviations	2.0
+//		// aberration	53.0
+//		// aberrations	11.0
+//		readNGrams(conf, BASE + "sparse/wordcount/ngrams");
+//		
+//		// 2.6 Read subgrams - relations between ngrams
+//		// gram: aberration correction [frq=3, type=n]	 has gram: aberration [frq=53, type=h]
+//		readSubgrams(conf, BASE + "sparse/wordcount/subgrams");
+//		
+//		// 3. Cluster data		
+//		// using org.apache.mahout.clustering.kmeans.KMeansDriver
+//		
+//		// Clustering
+//		// 3.1 Read initial clusters
+//		// Randomly selected initial clusters. Each cluster has a centroid with common terms.
+//		// [customised:0.2927406505146588,fields:0.23116300838484566,opensource:0.27911637996861227...]
+//		readInitialClusters(conf, "target/stackoverflow-kmeans-initial-clusters");
+//		
+//		// 3.2 Read clustered points
+//		// Points represent text documents
+//		readClusteredPoints(conf, BASE + "kmeans/clusteredPoints");
+//		
+//		// 3.3 Final clusters
+//		// Same output structure after initial clusters
+//		readClusters(BASE + "kmeans/clusters-1-final", conf);
+//		
+//		// 3.4 Read canopy clusters
+////		readCanopyClusters(BASE + "canopy/clusters-0-final", conf);
+//
+//		// 3.5 Read fuzzy k-means clistering
+////		readClusters(BASE + "fuzzy-kmeans/clusters-1-final", conf);
+//		
+//		// 4. Post process data
+//		// 4.1 Read points to clusters mapping (information taken from clusters and points files)
+//		// PointToClusterMappingJob
+//		readPointsToClustersMapping(conf, BASE + "pointsToClusters_kmeans");
+//		//readPointsToClustersMapping(conf, BASE + "pointsToClusters_fuzzy-kmeans");
 		
 		// 4.2 Read clustered posts file
 		// ClusterJoinerJob
 		readClusteredPosts(conf, BASE + "clusteredPosts_kmeans");
-		readClusteredPosts(conf, BASE + "clusteredPosts_fuzzy-kmeans");
+		readClusteredPosts(conf, BASE + "clusteredPosts_kmeans/emr");
+		//readClusteredPosts(conf, BASE + "clusteredPosts_fuzzy-kmeans");
 		
 		// Read inter-cluster distance
 		
@@ -159,7 +159,7 @@ public class MySequenceFileReader {
 //                "clusteredPoints"));
 		
 		// Evaluate distances between clusters
-		countClusterDistances(conf, BASE + "kmeans/clusters-1-final");
+//		countClusterDistances(conf, BASE + "kmeans/clusters-1-final");
 	}
 
 	private static void countClusterDistances(Configuration conf, String path) throws IOException {
@@ -236,10 +236,6 @@ public class MySequenceFileReader {
 		SequenceFileReaderUtil.readPartFilesInDir(path, TEXT_FILE_MAX_ROWS, conf, new TextFileOutputReaderHandler<LongWritable, IntWritable>(path + "/pointsToClusters.txt", handler));
 	}
 
-	private static void readFinalClusters(Configuration conf, String path) throws IOException {
-		readClusters(path, conf);
-	}	
-	
 	private static void readClusteredPoints(Configuration conf, String path) throws IOException {
 		SequenceFileReaderUtil.readPartFilesInDirToConsole(path, 10, conf);
 		
@@ -361,10 +357,10 @@ public class MySequenceFileReader {
 	
 	static SimpleConsoleReaderHandler<Text, VectorWritable> vectorHandler = new SimpleConsoleReaderHandler<Text, VectorWritable>() {
 		@Override
-		public void read(Text key, VectorWritable value, PrintStream myout) {
-			System.out.println("Key: " + key);
-			System.out.println("Vector: " + value.get().asFormatString());
-			System.out.println("Vector + dictionary: " + printVectorWithDictionary(value.get()));
+		public void read(Text key, VectorWritable value, PrintStream out) {
+			out.println("Key: " + key);
+			out.println("Vector: " + value.get().asFormatString());
+			out.println("Vector + dictionary: " + printVectorWithDictionary(value.get()));
 			// TODO What does the key represent?
 		}
 	};
@@ -380,11 +376,12 @@ public class MySequenceFileReader {
 	}
 	
 	private static void readTfVectors(Configuration conf, String path) throws IOException {
-		SequenceFileReaderUtil.readPartFilesInDir(path, DOCUMENTS_COUNT, conf, vectorHandler);
+		SequenceFileReaderUtil.readPartFilesInDir(path, DOCUMENTS_COUNT, conf, new ConsoleReaderHandler(vectorHandler));
 	}	
 	
 	private static void readTfIdfVectors(Configuration conf, String path) throws IOException {
-		SequenceFileReaderUtil.readPartFilesInDir(path, DOCUMENTS_COUNT, conf, vectorHandler);
+		SequenceFileReaderUtil.readPartFilesInDir(path, DOCUMENTS_COUNT, conf, new ConsoleReaderHandler(vectorHandler));
+		SequenceFileReaderUtil.readPartFilesInDir(path, TEXT_FILE_MAX_ROWS, conf, new TextFileOutputReaderHandler(path + ".txt", vectorHandler));
 	}
 
 
@@ -404,12 +401,13 @@ public class MySequenceFileReader {
 	private static void readProcessedPosts(Configuration conf, String path) throws IOException {
 		SimpleConsoleReaderHandler<Text, Text> handler = new SimpleConsoleReaderHandler<Text, Text>() {
 			@Override
-			public void read(Text key, Text value, PrintStream myout) {
-				System.out.println("Post key: " + key);
-				System.out.println("Post value (title+text): " + value);
+			public void read(Text key, Text value, PrintStream out) {
+				out.println("Post key: " + key);
+				out.println("Post value (title+text): " + value);
 			}
 		};
 		
-		SequenceFileReaderUtil.readPartFilesInDir(path, DOCUMENTS_COUNT, conf, handler);
+		SequenceFileReaderUtil.readPartFilesInDir(path, DOCUMENTS_COUNT, conf, new ConsoleReaderHandler<Text, Text>(handler));
+		SequenceFileReaderUtil.readPartFilesInDir(path, TEXT_FILE_MAX_ROWS, conf, new TextFileOutputReaderHandler<Text, Text>(path + ".txt", handler));
 	}	
 }

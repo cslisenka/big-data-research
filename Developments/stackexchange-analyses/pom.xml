@@ -7,16 +7,16 @@
 	<version>1.0-SNAPSHOT</version>
 
 	<properties>
-		<jackson.version>2.1.4</jackson.version>
 		<hadoop.version>0.20.203.0</hadoop.version>
 		<neo4j.version>1.9.3</neo4j.version>
 		<mahout.version>0.8</mahout.version>
+		<lucene.version>4.3.0</lucene.version>
 	</properties>
 
 	<modules>
 		<module>stackexchange-analyses-hadoop-mahout</module>
-		<module>stackexchange-analyses-web</module>
-		<module>neo4j-import-util</module>
+		<!-- module>stackexchange-analyses-web</module -->
+		<!-- module>neo4j-import-util</module-->
 	</modules>
 
 	<dependencyManagement>
@@ -25,35 +25,15 @@
 				<groupId>org.apache.hadoop</groupId>
 				<artifactId>hadoop-core</artifactId>
 				<version>${hadoop.version}</version>
+				<scope>provided</scope>
 			</dependency>
-			<!--
-			TODO if we really need them?
-			 dependency>
-				<groupId>com.fasterxml.jackson.core</groupId>
-				<artifactId>jackson-databind</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.fasterxml.jackson.jaxrs</groupId>
-				<artifactId>jackson-jaxrs-json-provider</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.fasterxml.jackson.dataformat</groupId>
-				<artifactId>jackson-dataformat-yaml</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.fasterxml.jackson.datatype</groupId>
-				<artifactId>jackson-datatype-guava</artifactId>
-				<version>2.1.2</version>
-			</dependency -->
 
 			<dependency>
 				<groupId>org.apache.mrunit</groupId>
 				<artifactId>mrunit</artifactId>
 				<version>0.9.0-incubating</version>
 				<classifier>hadoop1</classifier>
+				<scope>test</scope>
 			</dependency>
 
 			<dependency>
@@ -69,35 +49,19 @@
 				<version>1.3.2</version>
 			</dependency>
 
-			<!-- Dependencies for running on clouderra vm 
-			TODO if we really need them?-->
-			<!-- dependency>
-				<groupId>org.codehaus.jackson</groupId>
-				<artifactId>jackson-mapper-asl</artifactId>
-				<version>1.5.0</version>
-			</dependency -->
-
 			<!-- Neo4j dependencies -->
-			<dependency>
+			<!-- dependency>
 				<groupId>org.neo4j</groupId>
 				<artifactId>neo4j</artifactId>
 				<version>${neo4j.version}</version>
-			</dependency>
+			</dependency -->
 
 			<!-- Wrapper library for external server interaction. Acts in a GraphDatabaseService 
 				way like in Neo4jEmbeddedExamplesTest, but interacts with external server. -->
-			<dependency>
+			<!-- dependency>
 				<groupId>org.neo4j</groupId>
 				<artifactId>neo4j-rest-graphdb</artifactId>
 				<version>1.9.3-SNAPSHOT</version>
-			</dependency>
-
-			<!-- Used for making JSON requests to external Neo4j server manually. 
-			TODO if we really need them?-->
-			<!-- dependency>
-				<groupId>com.sun.jersey</groupId>
-				<artifactId>jersey-client</artifactId>
-				<version>1.17.1</version>
 			</dependency -->
 
 			<dependency>

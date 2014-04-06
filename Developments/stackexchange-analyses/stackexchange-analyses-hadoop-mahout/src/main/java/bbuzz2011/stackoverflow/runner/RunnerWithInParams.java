@@ -3,10 +3,13 @@ package bbuzz2011.stackoverflow.runner;
 import java.io.IOException;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.fs.s3.S3FileSystem;
+import org.apache.hadoop.fs.s3native.NativeS3FileSystem;
+import org.apache.hadoop.hdfs.DistributedFileSystem;
 import org.apache.hadoop.util.ToolRunner;
 import org.apache.mahout.clustering.kmeans.KMeansDriver;
-import org.apache.mahout.common.HadoopUtil;
 import org.apache.mahout.common.distance.CosineDistanceMeasure;
 import org.apache.mahout.vectorizer.SparseVectorsFromSequenceFiles;
 
@@ -24,42 +27,50 @@ import bbuzz2011.stackoverflow.preprocess.xml.StackOverflowPostXMLParserJob;
  * 4. Post process
  * 5. Send to Lucene 
  */
-public class Runner {
+public class RunnerWithInParams {
 
     private Configuration configuration = new Configuration();
-    private Path outputBasePath = new Path("target/stackoverflow-output-base/");
+    private Path outputBasePath;// = new Path("target/stackoverflow-output-base/");
 
     private String outputDictionaryPattern;
     private Path outputPostsPath;
     private Path outputSeq2SparsePath;
     private Path outputVectorPath;
 
+    /**
+     * Args
+     * 0 = input (amazon s3)
+     * 1 = output (amazon s3)
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
-        Runner runner = new Runner();
-        runner.run();
+        RunnerWithInParams runner = new RunnerWithInParams();
+        runner.run(args);
     }
 
-    private void run() throws Exception {
+    private void run(String[] args) throws Exception {
+    	outputBasePath = new Path(args[1]);
         outputSeq2SparsePath = new Path(outputBasePath, "sparse");
         outputVectorPath = new Path(outputSeq2SparsePath, "tfidf-vectors");
         outputDictionaryPattern = new Path(outputSeq2SparsePath, "dictionary.file-*").toString();       	
-        cleanOutputBasePath();
-        preProcess();
+//        cleanOutputBasePath();
+        preProcess(args[0]);
         vectorize();
         cluster();
         postProcess(new Path(outputBasePath, "kmeans"), "kmeans");
-//        postProcess(new Path(outputBasePath, "fuzzy-kmeans"), "fuzzy-kmeans");
     }
 
-    private void cleanOutputBasePath() throws IOException {
-        HadoopUtil.delete(configuration, outputBasePath);
-    }
+//    private void cleanOutputBasePath() throws IOException {
+//        HadoopUtil.delete(configuration, outputBasePath);
+//    }
 
-    private void preProcess() throws ClassNotFoundException, IOException, InterruptedException {
+    private void preProcess(String input) throws ClassNotFoundException, IOException, InterruptedException {
     	// TODO probably specify directory
-        configuration.set(StackOverflowPostXMLParserJob.INPUT, "src/test/resources/posts-small.xml");
+        configuration.set(StackOverflowPostXMLParserJob.INPUT, input);
         configuration.set(StackOverflowPostXMLParserJob.OUTPUT, outputBasePath.toString());
 
+        
         // Parse posts.xml to sequence file [PostId] [PostWritable(Title, Text)]
         // We need this information later after clustering finish. We'll join it with clustered IDs.
         StackOverflowPostXMLParserJob parseJob = new StackOverflowPostXMLParserJob(configuration);
@@ -79,7 +90,7 @@ public class Runner {
      * @throws Exception
      */
     private void vectorize() throws Exception {
-        String[] seq2SparseArgs = new String[]{
+        String[] seq2SparseArgs = new String[] {
                 "--input", new Path(outputBasePath, StackOverflowPostTextExtracterJob.OUTPUT_POSTS_TEXT).toString(),
                 "--output", outputSeq2SparsePath.toString(),
                 // Maximum size of word groups, which are often together and represent one item (Coca Cola, Unit Testing, Continuous Integration)
@@ -100,12 +111,13 @@ public class Runner {
 
     private void cluster() throws Exception {
         Path outputKMeansPath = new Path(outputBasePath, "kmeans");
+        Path clustersPath = new Path(outputKMeansPath, "stackoverflow-kmeans-initial-clusters");
 
         // TODO where are initial clusters generated?
         String[] kmeansDriver = {
                 "--input", outputVectorPath.toString(),
                 "--output", outputKMeansPath.toString(),
-                "--clusters", "target/stackoverflow-kmeans-initial-clusters",
+                "--clusters", clustersPath.toString(),
                 // Max iterations number
                 "--maxIter", "25",
                 // Make 60 initial clusters
@@ -116,43 +128,8 @@ public class Runner {
                 "--overwrite"
         };
 
-        ToolRunner.run(configuration, new KMeansDriver(), kmeansDriver);
-
-//        Path outputCanopy = new Path(outputBasePath, "canopy");        
-//        
-//        String[] canopyDriver = {
-//                "--input", outputVectorPath.toString(),
-//                "--output", outputCanopy.toString(),
-//                "--distanceMeasure", CosineDistanceMeasure.class.getName(),
-//                "--t1", "1500",
-//                "--t2", "2500"//,
-////                "--clusterFilter", "0"
-//        };        
-//        
-//        ToolRunner.run(configuration, new CanopyDriver(), canopyDriver);
-//        
-//        Path outputFuzzyKMeans = new Path(outputBasePath, "fuzzy-kmeans");        
-//        
-//        // TODO where are initial clusters generated?
-//        String[] fuzzyKMeansDriver = {
-//                "--input", outputVectorPath.toString(),
-//                "--output", outputFuzzyKMeans.toString(),
-//                "--distanceMeasure", CosineDistanceMeasure.class.getName(),
-//                "--convergenceDelta", "1.0",
-//                // Fuzziest
-//                "--m", "1.2",
-//				// Max iterations number
-//				"--maxIter", "10",
-//				//"-e", "false",
-//				//"-t", "0",
-//				"--method", "mapreduce",
-//				"--clusters", "target/stackoverflow-fuzzy-kmeans-initial-clusters",
-//				"--overwrite",
-//				"--clustering",
-//				"--numClusters", "60"
-//        };        
-//        
-//        ToolRunner.run(configuration, new FuzzyKMeansDriver(), fuzzyKMeansDriver);        
+        KMeansDriver kmeans = new KMeansDriver();
+        ToolRunner.run(configuration, kmeans, kmeansDriver);        
     }
 
     private void postProcess(Path outputClusteringPath, String algorithmId) throws Exception {

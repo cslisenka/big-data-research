@@ -31,8 +31,8 @@ import by.bsuir.kslisenko.util.SequenceFileReaderUtil;
  */
 public class Neo4jImporter {
 
-//	private static final String SERVER = "http://50.16.193.54:7474/db/data";
-	private static final String SERVER = "http://localhost:7474/db/data";
+	private static final String SERVER = "http://50.16.193.54:7474/db/data";
+//	private static final String SERVER = "http://localhost:7474/db/data";
 	private static final int BATCH_SIZE = 25000; // Objects imported per transaction
 	private GraphDatabaseService graphDb;
 	private String serverUri;
@@ -203,18 +203,19 @@ public class Neo4jImporter {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		final String BASE = "../stackexchange-analyses-hadoop-mahout/target/stackoverflow-output-base/";
+//		final String BASE = "../stackexchange-analyses-hadoop-mahout/target/stackoverflow-output-base/";
+		final String BASE = "src/main/resources/";
 		Neo4jImporter importer = new Neo4jImporter(SERVER, 
 				BASE + "kmeans/clusters-1-final",
 				BASE + "clusteredPosts_kmeans",
 				BASE + "sparse/dictionary.file-*");
-		importer.doImport("stackoverflow.com small", "k-means clustering (30 clusters), mahout 0.8", "small stackoverflow subset from Frank Sholten demo");
+		importer.doImport("stackoverflow.com small - Amazon EMR", "k-means clustering (60 clusters), mahout 0.8, run on Amazon EMR", "small stackoverflow subset from Frank Sholten demo");
 		
-		importer = new Neo4jImporter(SERVER, 
-				BASE + "fuzzy-kmeans/clusters-1-final",
-				BASE + "clusteredPosts_fuzzy-kmeans",
-				BASE + "sparse/dictionary.file-*");
-		importer.doImport("stackoverflow.com small", "fyzzy k-means clustering (30 clusters), mahout 0.8", "small stackoverflow subset from Frank Sholten demo");		
+//		importer = new Neo4jImporter(SERVER, 
+//				BASE + "fuzzy-kmeans/clusters-1-final",
+//				BASE + "clusteredPosts_fuzzy-kmeans",
+//				BASE + "sparse/dictionary.file-*");
+//		importer.doImport("stackoverflow.com small", "fyzzy k-means clustering (30 clusters), mahout 0.8", "small stackoverflow subset from Frank Sholten demo");		
 	}
 	
 	private static class TermIndexWeight {

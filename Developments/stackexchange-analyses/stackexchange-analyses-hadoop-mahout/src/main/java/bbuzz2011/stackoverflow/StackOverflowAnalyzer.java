@@ -36,6 +36,7 @@ public class StackOverflowAnalyzer extends Analyzer {
 		TokenStream tok = new LowerCaseFilter(Version.LUCENE_43, tokenizer);
 		tok = new StandardFilter(Version.LUCENE_43, tok);
 		tok = new LengthFilter(true, tok, 4, 15);
+//		tok = new LengthFilter(Version.LUCENE_43, tok, 4, 15);
 		tok = new PorterStemFilter(tok);
 		
 		final CharArraySet stopSet = new CharArraySet(Version.LUCENE_43, stopWords.size(), true);

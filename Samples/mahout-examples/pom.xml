@@ -2,16 +2,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>by.kslisenko</groupId>
-	<artifactId>mahout-examples</artifactId>
+	<artifactId>mahout-my-examples</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0</version>
 
 	<properties>
 		<jackson.version>2.1.4</jackson.version>
-		<mahout.version>0.5</mahout.version>
-		<mahout.groupid>org.apache.mahout</mahout.groupid>
+		<mahout.version>1.0-SNAPSHOT</mahout.version>
 	</properties>
-
 	<dependencies>
 		<!-- Mahout dependencies -->
 		<dependency>
@@ -36,11 +34,6 @@
 			<artifactId>mahout-math</artifactId>
 			<type>test-jar</type>
 			<scope>test</scope>
-			<version>${mahout.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.mahout</groupId>
-			<artifactId>mahout-utils</artifactId>
 			<version>${mahout.version}</version>
 		</dependency>
 		<dependency>
@@ -112,12 +105,6 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>1.3.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>lucene</groupId>
-			<artifactId>lucene</artifactId>
-			<version>1.2</version>
 		</dependency>
 	</dependencies>
 </project>
