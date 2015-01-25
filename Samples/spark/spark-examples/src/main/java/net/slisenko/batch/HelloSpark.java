@@ -1,4 +1,4 @@
-package net.slisenko;
+package net.slisenko.batch;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
@@ -11,10 +11,8 @@ import org.apache.spark.api.java.function.Function;
 public class HelloSpark {
 
     public static void main(String... args) {
-        String logFilePath = "/home/kslisenko/Environment/spark-1.2.0/README.md";
-        SparkConf conf = new SparkConf()
-                .setAppName("Hello spark") // Application name on UI
-                .setMaster("local"); // URL of spark/hadoop cluster, or "local"
+        String logFilePath = "/home/kslisenko/Environment/spark-1.2.0-bin-hadoop2.4/README.md";
+        SparkConf conf = new SparkConf().setAppName("Hello spark").setMaster("local[2]");
         // Context tells Spark how to access cluster
         JavaSparkContext context = new JavaSparkContext(conf);
 
@@ -39,5 +37,10 @@ public class HelloSpark {
         System.out.println("Contains a first: " + containsA.first());
         System.out.println("Contains b length: " + containsB.count());
         System.out.println("Contains b first: " + containsB.first());
+
+        try {
+            Thread.sleep(10000000);
+        } catch (InterruptedException e) {
+        }
     }
 }

@@ -1,0 +1,16 @@
+
+ordinary
+--------
+
+SPARK_HOME - convenient for testing
+sc.stop
+
+
+permanent
+---------
+
+force computations
+need to set number of slices
+don't run locally or with limited resources
+not streaming
+logging on workers

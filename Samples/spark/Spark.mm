@@ -28,8 +28,7 @@
       parallelizing -<br />&#1079;&#1072;&#1076;&#1072;&#1090;&#1100; &#1082;&#1086;&#1083;&#1083;&#1077;&#1082;&#1094;&#1080;&#1102; &#1074;&#1088;&#1091;&#1095;&#1085;&#1091;&#1102; (&#1080;&#1083;&#1080; &#1089;&#1075;&#1077;&#1085;&#1077;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100;)
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1422176666439" ID="ID_1327314928" MODIFIED="1422176677940" TEXT="List&lt;Integer&gt; data = Arrays.asList(1, 2, 3, 4, 5); &#xa;JavaRDD&lt;Integer&gt; distData = sc.parallelize(data);"/>
 </node>
 <node CREATED="1422172552920" ID="ID_889699996" MODIFIED="1422172585825" TEXT="RDD &#x43c;&#x43e;&#x436;&#x43d;&#x43e; &#x437;&#x430;&#x43a;&#x435;&#x448;&#x438;&#x440;&#x43e;&#x432;&#x430;&#x442;&#x44c; &#x432; &#x43f;&#x430;&#x43c;&#x44f;&#x442;&#x438; &#x434;&#x43b;&#x44f; &#x431;&#x43e;&#x43b;&#x44c;&#x448;&#x435;&#x439; &#x44d;&#x444;&#x444;&#x435;&#x43a;&#x442;&#x438;&#x432;&#x43d;&#x43e;&#x441;&#x442;&#x438;"/>
@@ -61,8 +60,16 @@
 <node CREATED="1422172997946" ID="ID_1244107467" MODIFIED="1422173037081" TEXT="&#x43b;&#x43e;&#x43a;&#x430;&#x43b;&#x44c;&#x43d;&#x43e; &#x438;&#x437; IDE - new SparkConf().setMaster(&quot;local&quot;)">
 <node CREATED="1422173088324" ID="ID_791833793" MODIFIED="1422173097450" TEXT="&#x443;&#x434;&#x43e;&#x431;&#x43d;&#x43e; &#x434;&#x43b;&#x44f; unit-&#x442;&#x435;&#x441;&#x442;&#x43e;&#x432;"/>
 </node>
-<node CREATED="1422173038134" ID="ID_52750847" MODIFIED="1422173069952" TEXT="&#x43b;&#x43e;&#x43a;&#x430;&#x43b;&#x44c;&#x43d;&#x43e; - ./spark-submit --class &quot;net.slisenko.HelloSpark&quot; --master local[4] /home/kslisenko/github/OCEJWCD/spark-examples/target/spark-examples-1.0-SNAPSHOT.jar"/>
+<node CREATED="1422173038134" ID="ID_52750847" MODIFIED="1422190263105" TEXT="&#x43e;&#x442;&#x43f;&#x440;&#x430;&#x432;&#x43a;&#x430; jar-&#x444;&#x430;&#x439;&#x43b;&#x430; &#x432; &#x43a;&#x43b;&#x430;&#x441;&#x442;&#x435;&#x440; - ./spark-submit --class &quot;net.slisenko.HelloSpark&quot; --master local[4] /home/kslisenko/github/OCEJWCD/spark-examples/target/spark-examples-1.0-SNAPSHOT.jar"/>
 <node CREATED="1422173114942" ID="ID_766755536" MODIFIED="1422173128362" TEXT="&#x438;&#x441;&#x43f;&#x43e;&#x43b;&#x44c;&#x437;&#x43e;&#x432;&#x430;&#x442;&#x44c; shell - &#x434;&#x43e;&#x441;&#x442;&#x443;&#x43f;&#x43d;&#x43e; &#x434;&#x43b;&#x44f; Python &#x438; Scala"/>
+<node CREATED="1422190266368" ID="ID_235413432" MODIFIED="1422190281190" TEXT="&#x437;&#x430;&#x43f;&#x443;&#x441;&#x43a; &#x43c;&#x430;&#x441;&#x442;&#x435;&#x440;&#x430; &#x438; &#x432;&#x43e;&#x440;&#x43a;&#x435;&#x440;&#x43e;&#x432;">
+<node CREATED="1422190291534" ID="ID_1646921067" MODIFIED="1422190291534" TEXT="sbin/start-master.sh">
+<node CREATED="1422190304828" ID="ID_61903861" MODIFIED="1422190486134" TEXT="&#x43e;&#x434;&#x438;&#x43d; &#x43c;&#x430;&#x441;&#x442;&#x435;&#x440;"/>
+<node CREATED="1422190486620" ID="ID_1205743648" MODIFIED="1422190498756" TEXT="&#x432;&#x435;&#x431;-&#x43c;&#x43e;&#x440;&#x434;&#x430; &#x431;&#x443;&#x434;&#x435;&#x442; &#x434;&#x43e;&#x441;&#x442;&#x443;&#x43f;&#x43d;&#x430; &#x43d;&#x430; &#x43f;&#x440;&#x43e;&#x442;&#x443; 8080"/>
+</node>
+<node CREATED="1422190301817" ID="ID_1942400087" MODIFIED="1422190301817" TEXT="spark-class org.apache.spark.deploy.worker.Worker spark://kslisenko-pc:7077"/>
+<node CREATED="1422190321488" ID="ID_348395914" MODIFIED="1422190335205" TEXT="&#x434;&#x430;&#x43b;&#x435;&#x435; &#x432; &#x43f;&#x440;&#x43e;&#x433;&#x440;&#x430;&#x43c;&#x43c;&#x435; &#x43c;&#x43e;&#x436;&#x43d;&#x43e; &#x43f;&#x440;&#x43e;&#x43f;&#x438;&#x441;&#x44b;&#x432;&#x430;&#x442;&#x44c; url &#x43a; &#x43c;&#x430;&#x441;&#x442;&#x435;&#x440;&#x443; (&#x434;&#x43e;&#x441;&#x442;&#x443;&#x43f;&#x435;&#x43d; &#x43d;&#x430; &#x432;&#x435;&#x431;-&#x43c;&#x43e;&#x440;&#x434;&#x435;)"/>
+</node>
 <node CREATED="1422182687689" ID="ID_701331946" MODIFIED="1422182696897" TEXT="spark &#x43d;&#x435; &#x43f;&#x43e;&#x434;&#x434;&#x435;&#x440;&#x436;&#x438;&#x432;&#x430;&#x435;&#x442; 2 &#x43a;&#x43e;&#x43d;&#x442;&#x435;&#x43a;&#x441;&#x442;&#x430; &#x432; &#x43e;&#x434;&#x43d;&#x43e;&#x439; &#x43f;&#x440;&#x43e;&#x433;&#x440;&#x430;&#x43c;&#x43c;&#x435;"/>
 </node>
 <node CREATED="1422176397830" ID="ID_797026163" MODIFIED="1422176402502" POSITION="right" TEXT="&#x43d;&#x430;&#x447;&#x430;&#x43b;&#x43e; &#x440;&#x430;&#x431;&#x43e;&#x442;&#x44b;">
@@ -125,8 +132,7 @@
       Broadcast&lt;int[]&gt; broadcastVar = sc.broadcast(new int[] {1, 2, 3});&#160;&#160;<br />broadcastVar.value();
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1422182232642" ID="ID_270252412" MODIFIED="1422182240928" TEXT="accumulators">
