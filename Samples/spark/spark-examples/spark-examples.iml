@@ -105,8 +105,8 @@
     <orderEntry type="library" name="Maven: org.json4s:json4s-core_2.10:3.2.10" level="project" />
     <orderEntry type="library" name="Maven: org.json4s:json4s-ast_2.10:3.2.10" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang:scalap:2.10.0" level="project" />
-    <orderEntry type="library" name="Maven: org.scala-lang:scala-compiler:2.10.0" level="project" />
-    <orderEntry type="library" name="Maven: org.scala-lang:scala-reflect:2.10.0" level="project" />
+    <orderEntry type="library" name="Maven: org.scala-lang:scala-compiler:2.10.4" level="project" />
+    <orderEntry type="library" name="Maven: org.scala-lang:scala-reflect:2.10.4" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.3.1" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.3.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.3.1" level="project" />
@@ -124,6 +124,26 @@
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-streaming:2.6.0" level="project" />
     <orderEntry type="library" name="Maven: org.htmlparser:htmlparser:2.1" level="project" />
     <orderEntry type="library" name="Maven: org.htmlparser:htmllexer:2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.spark:spark-mllib_2.10:1.2.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.spark:spark-sql_2.10:1.2.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.spark:spark-catalyst_2.10:1.2.0" level="project" />
+    <orderEntry type="library" name="Maven: org.scalamacros:quasiquotes_2.10:2.0.1" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:parquet-column:1.6.0rc3" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:parquet-common:1.6.0rc3" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:parquet-encoding:1.6.0rc3" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:parquet-generator:1.6.0rc3" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:parquet-hadoop:1.6.0rc3" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:parquet-format:2.2.0-rc1" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:parquet-jackson:1.6.0rc3" level="project" />
+    <orderEntry type="library" name="Maven: org.jblas:jblas:1.2.3" level="project" />
+    <orderEntry type="library" name="Maven: org.scalanlp:breeze_2.10:0.10" level="project" />
+    <orderEntry type="library" name="Maven: org.scalanlp:breeze-macros_2.10:0.3.1" level="project" />
+    <orderEntry type="library" name="Maven: com.github.fommil.netlib:core:1.1.2" level="project" />
+    <orderEntry type="library" name="Maven: net.sourceforge.f2j:arpack_combined_all:0.1" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.opencsv:opencsv:2.3" level="project" />
+    <orderEntry type="library" name="Maven: com.github.rwl:jtransforms:2.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.spire-math:spire_2.10:0.7.4" level="project" />
+    <orderEntry type="library" name="Maven: org.spire-math:spire-macros_2.10:0.7.4" level="project" />
   </component>
 </module>
 
