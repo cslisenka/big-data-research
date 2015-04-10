@@ -1,0 +1,13 @@
+# Launch mongo database
+# ./mongod -dbpath ../data
+
+# Insert 100 millions call records to Mongo
+# ./mongo localhost:27017/telecom initData.js
+
+# Data request examples
+## 1. Select with conditions: 
+# mongo returns first 20 records, query runs fast (< 1 sec)
+db.calls.find({ cost : { $gt : 1000 }, countryFrom : { $eq : 'Latvia' }})
+
+# mongo scans all data (~ 4 seconds)
+db.calls.find({ cost : { $gt : 1000 }, countryFrom : { $eq : 'Latvia' }, countryTo : { $eq : 'Latvia'}}).count()
